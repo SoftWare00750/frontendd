@@ -11,27 +11,27 @@ import DashboardLayout from "./layouts/agent/DashboardLayout";
 import Dashboard from "./pages/agent/dashboard/Dashboard";
 import Listings from "./pages/agent/dashboard/Listings";
 
-
-
 function App() {
   return (
     <Router>
       <ScrollToTop />
       <Routes>
-        <Route path="/tenantSignup" element={<TenantSignup />} />
-        <Route path="/" element={<Welcome />} />
+        {/* Root now loads the tenant signup */}
+        <Route path="/" element={<TenantSignup />} />
+
+        {/* Agent onboarding — moved to /agent */}
+        <Route path="/agent" element={<Welcome />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/verify-phone" element={<VerifyPhone />} />
         <Route path="/login" element={<Login />} />
         <Route path="/stepform" element={<StepForm />} />
         <Route path="/summary" element={<Summary />} />
 
-        {/* Protected routes */}
-       <Route path="/"element={<DashboardLayout />} >
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/listings" element={<Listings />} />
-
-       </Route>
+        {/* Protected agent dashboard routes */}
+        <Route path="/" element={<DashboardLayout />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/listings" element={<Listings />} />
+        </Route>
       </Routes>
     </Router>
   );
