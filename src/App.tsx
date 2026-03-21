@@ -1,14 +1,16 @@
-import Welcome from "./pages/Welcome";
+import TenantSignup from "./pages/tenant/auth/tenantSignup";
+import Welcome from "./pages/agent/onboarding/Welcome";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Signup from "./pages/auth/Signup";
-import ScrollToTop from "./components/ScrollToTop";
-import VerifyPhone from "./pages/VerifyPhone";
-import Login from "./pages/auth/Login";
-import StepForm from "./pages/StepForm";
-import Summary from "./pages/Steps/Summary";
-import DashboardLayout from "./agentdashboardlayout/DashboardLayout";
-import Dashboard from "./pages/agentdashboard/Dashboard";
-import Listings from "./pages/listings/Listings";
+import Signup from "./pages/agent/auth/Signup";
+import ScrollToTop from "./components/shared/ScrollToTop";
+import VerifyPhone from "./pages/agent/onboarding/VerifyPhone";
+import Login from "./pages/agent/auth/Login";
+import StepForm from "./pages/agent/onboarding/StepForm";
+import Summary from "./pages/agent/onboarding/Summary";
+import DashboardLayout from "./layouts/agent/DashboardLayout";
+import Dashboard from "./pages/agent/dashboard/Dashboard";
+import Listings from "./pages/agent/dashboard/Listings";
+
 
 
 function App() {
@@ -16,6 +18,7 @@ function App() {
     <Router>
       <ScrollToTop />
       <Routes>
+        <Route path="/tenantSignup" element={<TenantSignup />} />
         <Route path="/" element={<Welcome />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/verify-phone" element={<VerifyPhone />} />
