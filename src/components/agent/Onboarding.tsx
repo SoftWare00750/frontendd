@@ -1,7 +1,7 @@
 import { CheckCircle, Shield, LineChartIcon } from "lucide-react"
 import {Link} from "react-router-dom"
-import logo from "../../assets/logo.svg";
-import icons from "../../assets/icons.svg";
+import logo from "/assets/logo.svg";
+import icons from "/assets/icons.svg";
 
 
 export default function Onboarding() {

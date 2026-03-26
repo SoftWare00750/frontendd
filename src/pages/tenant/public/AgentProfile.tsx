@@ -3,10 +3,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const AGENT_LISTINGS = [
-  { id: 1, price: "₦800,000", period: "/yr", location: "Lekki Phase 1, Lagos", beds: 2, baths: 2, status: "Rented",    img: "./../../assets/lisiings/prop1.png", time: "Listed 2 hours ago" },
-  { id: 2, price: "₦800,000", period: "/yr", location: "Lekki Phase 1, Lagos", beds: 2, baths: 2, status: "Available", img: "./../../assets/lisiings/prop1.png", time: "Listed 2 hours ago" },
-  { id: 3, price: "₦800,000", period: "/yr", location: "Lekki Phase 1, Lagos", beds: 2, baths: 2, status: "Rented",    img: "./../../assets/lisiings/prop2.png", time: "Listed 2 hours ago" },
-  { id: 4, price: "₦800,000", period: "/yr", location: "Lekki Phase 1, Lagos", beds: 2, baths: 2, status: "Available", img: "./../../assets/lisiings/prop1.png", time: "Listed 2 hours ago" },
+  { id: 1, price: "₦800,000", period: "/yr", location: "Lekki Phase 1, Lagos", beds: 2, baths: 2, status: "Rented",    img: "/assets/lisiings/prop1.png", time: "Listed 2 hours ago" },
+  { id: 2, price: "₦800,000", period: "/yr", location: "Lekki Phase 1, Lagos", beds: 2, baths: 2, status: "Available", img: "/assets/lisiings/prop1.png", time: "Listed 2 hours ago" },
+  { id: 3, price: "₦800,000", period: "/yr", location: "Lekki Phase 1, Lagos", beds: 2, baths: 2, status: "Rented",    img: "/assets/lisiings/prop2.png", time: "Listed 2 hours ago" },
+  { id: 4, price: "₦800,000", period: "/yr", location: "Lekki Phase 1, Lagos", beds: 2, baths: 2, status: "Available", img: "/assets/lisiings/prop1.png", time: "Listed 2 hours ago" },
 ];
 
 const TRUST_SCORES = [

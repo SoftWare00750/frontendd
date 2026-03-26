@@ -1,15 +1,16 @@
-
 import { LeftSection } from "../../../components/shared/LeftSection";
 import SignupForm from "../../../components/agent/SignupForm";
 
 export default function Signup() {
   return (
-    <div className="min-h-screen bg-[#3e3e3e] flex items-center justify-center px-6">
-      <div className="max-w-6xl w-full grid lg:grid-cols-2 rounded-xl overflow-hidden bg-white shadow-2xl">
-        {/* LEFT IMAGE */}
+    <div style={{ height: "100vh", display: "flex", overflow: "hidden" }}>
+      {/* LEFT PANEL */}
+      <div style={{ width: "45%", flexShrink: 0, overflow: "hidden" }}>
         <LeftSection />
+      </div>
 
-        {/* RIGHT SIDE */}
+      {/* RIGHT PANEL */}
+      <div style={{ flex: 1, overflow: "hidden", display: "flex", flexDirection: "column" }}>
         <SignupForm />
       </div>
     </div>

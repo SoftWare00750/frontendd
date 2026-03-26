@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 function Logo() {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-      <img src="./../../assets/logo.png" alt="OgaLandlord"
+      <img src="/assets/logo.png" alt="OgaLandlord"
         style={{ height: 32, objectFit: "contain" }}
         onError={(e) => { e.currentTarget.style.display = "none"; }}
       />
@@ -175,7 +175,7 @@ export default function AboutUs() {
             display: "flex", alignItems: "center", justifyContent: "center",
             fontSize: 72,
           }}>
-            <img src="./../../assets/about-hero.png" alt="About us"
+            <img src="/assets/about-hero.png" alt="About us"
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
               onError={(e) => { e.currentTarget.style.display = "none"; }}
             />
@@ -287,7 +287,7 @@ export default function AboutUs() {
             display: "flex", alignItems: "center", justifyContent: "center",
             fontSize: 72,
           }}>
-            <img src="./../../assets/about-hero.png" alt="Room"
+            <img src="/assets/about-hero.png" alt="Room"
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
               onError={(e) => { e.currentTarget.style.display = "none"; }}
             />

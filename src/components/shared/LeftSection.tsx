@@ -1,6 +1,6 @@
 
 import TestimonialCarousel from "../../components/shared/TestimonialCarousel";
-import background from "../../assets/leftsection.png";
+import background from "/assets/leftsection.png";
 export const LeftSection = () => {
 return(
 

@@ -26,7 +26,7 @@ function Logo() {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
       <img
-        src="./../../assets/logo2.png"
+        src="/assets/logo2.png"
         alt="OgaLandlord"
         style={{ height: 32, objectFit: "contain" }}
         onError={(e) => { e.currentTarget.style.display = "none"; }}

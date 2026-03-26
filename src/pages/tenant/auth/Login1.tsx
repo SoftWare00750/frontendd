@@ -1,12 +1,12 @@
-import { LeftSection } from "./../../../components/shared/LeftSection";
-import LoginForm from "./../../../components/agent/LoginForm";
+import { LeftSection2 } from "../../../components/shared/LeftSection2";
+import LoginForm from "../../../components/tenant/LoginForm1";
 
-export default function Login() {
+export default function Login1() {
   return (
     <div style={{ height: "100vh", display: "flex", overflow: "hidden" }}>
       {/* LEFT PANEL */}
       <div style={{ width: "45%", flexShrink: 0, overflow: "hidden" }}>
-        <LeftSection />
+        <LeftSection2 />
       </div>
 
       {/* RIGHT PANEL */}

@@ -2,7 +2,7 @@ import { LeftSection } from "../../../components/shared/LeftSection";
 import VerifyComponent from "../../../components/agent/VerifyComponent";
 
 
-export default function VerifyPhone() {
+export default function VerifyPhone1() {
   return (
    <div className="min-h-screen bg-[rgb(242,253,245)]">
 <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 max-w-7xl mx-auto p-5">

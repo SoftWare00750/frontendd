@@ -67,7 +67,7 @@ function BedBath({ beds, baths }: { beds: number; baths: number }) {
   );
 }
 
-export default function Listings() {
+export default function Listings1() {
   const navigate = useNavigate();
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [search, setSearch] = useState("");
