@@ -1,18 +1,24 @@
+// Login1.tsx — Tenant Login — Responsive Mobile
 import { LeftSection2 } from "../../../components/shared/LeftSection2";
 import LoginForm from "../../../components/tenant/LoginForm1";
 
+
+// Mobile-aware Login1 page wrapper
 export default function Login1() {
   return (
-    <div style={{ height: "100vh", display: "flex", overflow: "hidden" }}>
-      {/* LEFT PANEL */}
-      <div style={{ width: "45%", flexShrink: 0, overflow: "hidden" }}>
-        <LeftSection2 />
-      </div>
+    <>
+      {/* <style>{mobileStyles}</style> */}
+      <div className="h-screen grid md:grid-cols-2 overflow-hidden w-full">
+        {/* LEFT PANEL */}
+        <div className="overflow-hidden w-full">
+          <LeftSection2 />
+        </div>
 
-      {/* RIGHT PANEL */}
-      <div style={{ flex: 1, overflow: "hidden", display: "flex", flexDirection: "column", width: "20%" }}>
-        <LoginForm />
+        {/* RIGHT PANEL */}
+        <div className=" w-full " >
+          <LoginForm />
+        </div>
       </div>
-    </div>
+    </>
   );
 }

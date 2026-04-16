@@ -14,16 +14,18 @@ export default function StepForm() {
   const prev = () => setStep((s) => Math.max(s - 1, 1));
 
   return (
-    <div className="min-h-screen grid lg:grid-cols-2 max-w-7xl mx-auto">
+    <div className="min-h-screen grid md:grid-cols-2 max-w-7xl mx-auto">
       {/* LEFT SIDE */}
-      <LeftSection />
+      <div className="hidden md:block">
+        <LeftSection />
+      </div>
 
       {/* RIGHT SIDE */}
 
       <div className="bg-[rgb(242,253,245)] py-1">
          <div className="flex items-center gap-2 mb-5 border-b py-3 border-b-gray-300 ">
         <img
-          src="/logo.svg"
+          src="/assets/logo.svg"
           alt="OgaLandlord Logo"
           className="pb-5 px-10 md:w-[35%] w-[50%]"
         />

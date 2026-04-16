@@ -9,15 +9,15 @@ export default function Onboarding() {
     <div className="h-full overflow-hidden bg-[rgb(242,253,245)] flex flex-col">
 
       {/* Logo — fixed height, never shrinks */}
-      <div className="flex-shrink-0 flex items-center border-b border-gray-300 px-10 py-4">
-        <img src={logo} alt="OgaLandlord Logo" className="w-[35%]" />
+      <div className="flex-shrink-0 flex items-center border-b border-gray-300 px-5 py-4">
+        <Link to="/Home"><img src={logo} alt="OgaLandlord Logo" className="" /></Link>
       </div>
 
       {/* Scrollable body */}
       <div className="flex-1 overflow-y-auto flex flex-col justify-center md:px-20 px-8 py-8">
 
         {/* Icons illustration */}
-        <div className="flex items-center justify-center mb-6">
+        <div className="flex items-center justify-center">
           <img src={icons} alt="OgaLandlord icons" className="px-10" />
         </div>
 

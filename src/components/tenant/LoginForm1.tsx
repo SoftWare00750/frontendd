@@ -50,7 +50,7 @@ export default function LoginForm1() {
       </div>
 
       {/* Middle section */}
-      <div className="flex-1 overflow-y-auto flex flex-col items-center justify-between md:px-20 px-8 py-10">
+      <div className="flex-1 overflow-y-auto flex flex-col items-center justify-between  px-8 py-10">
 
         <div className="w-full max-w-sm">
           <h2 className="md:text-[28px] text-[16px] font-medium text-green-900 leading-snug text-left">
@@ -121,7 +121,7 @@ export default function LoginForm1() {
         {/* Sign-up nudge */}
         <p className="w-full max-w-sm text-center text-[12px] pt-4">
           Don't have an account?{" "}
-          <Link to="/tenant/signup" className="text-green-500 font-medium">Create an account</Link>
+          <Link to="/tenant/signup/create" className="text-green-500 font-medium">Create an account</Link>
         </p>
       </div>
 

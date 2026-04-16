@@ -47,12 +47,12 @@ export default function LoginForm() {
     <div className="h-full overflow-hidden bg-[rgb(242,253,245)] flex flex-col">
 
       {/* Logo */}
-      <div className="flex-shrink-0 flex items-center border-b border-gray-300 px-10 py-4">
-        <img src={logo} alt="OgaLandlord Logo" className="md:w-[27%] w-[40%]" />
+      <div className="flex-shrink-0 flex items-center border-b border-gray-300 px-10 py-4 fixed bg-[rgb(242,253,245)] w-full">
+        <img src={logo} alt="OgaLandlord Logo" className="md:w-[20%] w-[40%]" />
       </div>
 
       {/* Middle section */}
-      <div className="flex-1 overflow-y-auto flex flex-col items-center justify-between md:px-20 px-8 py-10">
+      <div className="flex-1 overflow-y-auto flex flex-col items-center justify-between px-8 py-10 mt-18 mb-28">
 
         <div className="w-full max-w-sm">
           <h2 className="md:text-[28px] text-[16px] font-medium text-green-900 leading-snug text-left">

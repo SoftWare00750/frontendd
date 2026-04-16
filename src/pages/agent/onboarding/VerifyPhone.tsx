@@ -6,7 +6,7 @@ export default function VerifyPhone1() {
   return (
    <div className="min-h-screen bg-[rgb(242,253,245)]">
 <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 max-w-7xl mx-auto p-5">
-<div className="w-full rounded-xl overflow-hidden">
+<div className="w-full rounded-xl overflow-hidden hidden lg:block">
   <LeftSection />
 </div>
 <div className="w-full rounded-xl overflow-hidden">

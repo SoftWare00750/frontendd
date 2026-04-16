@@ -7,20 +7,22 @@ export default function Summary() {
   
 
   return (
-    <div className="min-h-screen grid lg:grid-cols-2 max-w-7xl mx-auto">
+    <div className="min-h-screen grid md:grid-cols-2 max-w-7xl mx-auto">
       {/* LEFT SIDE */}
-      <LeftSection />
+      <div className="hidden md:block">
+        <LeftSection />
+      </div>
 
       {/* RIGHT SIDE */}
-      <div className="bg-[rgb(242,253,245)] ">
-         <div className="flex items-center gap-2 mb-12 border-b border-b-gray-300 ">
+      <div className="bg-[rgb(242,253,245)] relative ">
+         <div className="flex items-center gap-2 mb-12 border-b border-b-gray-300 fixed top-0 z-50 bg-[rgb(242,253,245)] w-full">
         <img
-          src="/logo.svg"
+          src="/assets/logo.svg"
           alt="OgaLandlord Logo"
           className="pb-5 pt-5 px-10 md:w-[35%] w-[50%]"
         />
       </div>
-<div className="p-5  mx-auto bg-white w-[320px] h-[400px] rounded-xl drop-shadow-lg">
+<div className="p-5  mx-auto bg-white w-[320px] h-[400px] rounded-xl drop-shadow-lg mt-25 ">
 <div className="bg-amber-50 text-amber-600 m-auto w-fit p-5 rounded-full mt-3 mb-3"><Clock size={30}/></div>
 <h1 className=" text-center py-3 font-medium text-2xl">Verification Pending</h1>
 <p className="text-center text-[12px] mb-3">Your documents are being reviewed by our team. This typically takes 24-48 hours.</p>
@@ -35,8 +37,8 @@ export default function Summary() {
 </div>
        
         {/* FOOTER */}
-        <div className="flex justify-between text-xs md:px-10 px-5 text-gray-500 mt-12 border-t border-gray-300 pt-5">
-          <span>© {new Date().getFullYear()} OgaLandlord</span>
+        <div className="flex justify-between text-xs md:px-10 px-5 text-gray-500 mt-12 border-t border-gray-300 pt-5 mb-5">
+          <span>© 2026 OgaLandlord</span>
 
           <div className="flex gap-5">
             <span className="hover:underline cursor-pointer">Privacy</span>

@@ -49,9 +49,9 @@ function App() {
       <Routes>
 
         {/* Root now loads the tenant signup */}
-         <Route path="/" element={<Home />} />
+         {/* <Route path="/" element={<Home />} /> */}
+         <Route path="/" element={<Waitlist />} />
          <Route path="/Home" element={<Home />} />
-         <Route path="/Waitlist" element={<Waitlist />} />
         <Route path="/Onboarding"  element={<Onboarding />} />
         <Route path="/tenant/signup"    element={<RoleSelect />} />
       <Route path="/tenant/signup/create"  element={<CreateAccount />} />
@@ -62,6 +62,7 @@ function App() {
       <Route path="/Listings1"  element={<Listings1 />} />
       <Route path="/ListingProperty"  element={<ListingsProperty />} />
       <Route path="/AgentProfile"  element={<AgentProfile />} />
+      <Route path="/agent/:id" element={<AgentProfile />} />
       <Route path="/AgentList"  element={<AgentList />} />
       <Route path="/FAQ"  element={<FAQ />} />
 

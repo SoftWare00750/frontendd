@@ -71,7 +71,7 @@ export default function Settings() {
             />
           </Link>
 
-          <Link to="/login">
+          <Link to="/agent/login">
             <SettingsItem
               icon={<LogOut size={18} />}
               title="Logout"

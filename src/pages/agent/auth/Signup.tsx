@@ -3,15 +3,16 @@ import SignupForm from "../../../components/agent/SignupForm";
 
 export default function Signup() {
   return (
-    <div style={{ height: "100vh", display: "flex", overflow: "hidden" }}>
+    <div className="grid md:grid-cols-2 grid-cols-1 ">
       {/* LEFT PANEL */}
-      <div style={{ width: "45%", flexShrink: 0, overflow: "hidden" }}>
+      <div  className=" hidden md:block">
         <LeftSection />
       </div>
 
       {/* RIGHT PANEL */}
-      <div style={{ flex: 1, overflow: "hidden", display: "flex", flexDirection: "column" }}>
+      <div className="flex-1">
         <SignupForm />
+        {/* <Onboarding /> */}
       </div>
     </div>
   );

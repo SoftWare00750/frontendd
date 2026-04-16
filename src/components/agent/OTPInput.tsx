@@ -15,6 +15,7 @@ export default function OTPInput() {
         <input
           key={i}
           type="text"
+          required
           maxLength={1}
           ref={(el) => { if (el) inputs.current[i] = el; }}
           onChange={(e) => handleChange(e.target.value, i)}
