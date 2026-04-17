@@ -1,7 +1,12 @@
 import { useRef } from "react";
 import { Upload } from "lucide-react";
 
-export default function UploadBox() {
+interface Props {
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  fileName?: string;
+}
+
+export default function UploadBox({ onChange, fileName }: Props) {
   const fileRef = useRef<HTMLInputElement | null>(null);
 
   const handleClick = () => {
@@ -13,6 +18,7 @@ export default function UploadBox() {
     if (file) {
       console.log("Selected file:", file);
     }
+    onChange?.(e); // forward to parent if provided
   };
 
   return (
@@ -22,13 +28,14 @@ export default function UploadBox() {
     >
       <Upload className="mx-auto text-gray-500 mb-3" />
 
-      <p className="text-sm text-gray-700 font-medium">
-        Tap to upload
-      </p>
-
-      <p className="text-xs text-gray-400">
-        PNG, JPG up to 5MB
-      </p>
+      {fileName ? (
+        <p className="text-sm font-semibold text-green-900">{fileName}</p>
+      ) : (
+        <>
+          <p className="text-sm text-gray-700 font-medium">Tap to upload</p>
+          <p className="text-xs text-gray-400">PNG, JPG up to 5MB</p>
+        </>
+      )}
 
       <input
         type="file"

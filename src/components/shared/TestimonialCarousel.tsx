@@ -36,12 +36,13 @@ export default function TestimonialCarousel() {
   };
 
   return (
-    <section className="p-4" style={{ background: "#f0faf4" }}>
+    <section style={{ background: "#f0faf4", padding: "72px 24px 80px" }}>
       <div style={{ textAlign: "center", marginBottom: 40 }}>
-        <h2 className="text-green-700"
+        <h2
           style={{
             fontSize: "clamp(28px, 4vw, 44px)",
             fontWeight: 900,
+            color: "#014421",
             marginBottom: 14,
             letterSpacing: "-0.5px",
           }}
@@ -50,7 +51,7 @@ export default function TestimonialCarousel() {
         </h2>
         <p
           style={{
-            fontSize: 16,
+            fontSize: 15,
             color: "#4b5563",
             lineHeight: 1.65,
             maxWidth: 360,
@@ -63,7 +64,7 @@ export default function TestimonialCarousel() {
 
       <div
         style={{
-         
+          maxWidth: 1060,
           margin: "0 auto",
           background: "#014421",
           borderRadius: 24,
@@ -76,7 +77,7 @@ export default function TestimonialCarousel() {
           justifyContent: "center",
         }}
       >
-        <div style={{ width: "100%", position: "relative", overflow: "hidden" }}>
+        <div style={{ width: "100%", maxWidth: 720, position: "relative", overflow: "hidden" }}>
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={current.id}
@@ -118,10 +119,11 @@ export default function TestimonialCarousel() {
                 </div>
 
                 <div style={{ flex: 1 }}>
-                  <p className="text-green-700 text-[20px]"
+                  <p
                     style={{
                       fontSize: "clamp(16px, 2.2vw, 20px)",
                       fontWeight: 800,
+                      color: "#0a0a0a",
                       marginBottom: 14,
                       lineHeight: 1.35,
                       letterSpacing: "-0.2px",
@@ -129,10 +131,10 @@ export default function TestimonialCarousel() {
                   >
                     {current.quote}
                   </p>
-                  <p style={{ fontSize: 16, color: "#374151", lineHeight: 1.72, marginBottom: 22 }}>
+                  <p style={{ fontSize: 14, color: "#374151", lineHeight: 1.72, marginBottom: 22 }}>
                     {current.body}
                   </p>
-                  <p style={{ fontSize: 16, fontWeight: 700, marginBottom: 3 }}>
+                  <p style={{ fontSize: 14, fontWeight: 700, color: "#0a0a0a", marginBottom: 3 }}>
                     {current.name}
                   </p>
                   <p style={{ fontSize: 13, color: "#9ca3af", fontWeight: 400 }}>

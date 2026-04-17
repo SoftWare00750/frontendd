@@ -1,8 +1,6 @@
 // Waitlist.tsx — OgaLandlord Waitlist Page — Responsive Mobile
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {Link} from "react-router-dom"
-import { ArrowRight } from "lucide-react";
 
 const mobileStyles = `
   @media (max-width: 768px) {
@@ -162,7 +160,7 @@ const mobileStyles = `
 
 function Logo() {
   return (
-    <div className="" style={{ display: "flex", alignItems: "center", gap: 6, cursor: "pointer" }}>
+    <div style={{ display: "flex", alignItems: "center", gap: 6, cursor: "pointer" }}>
       <img src="/assets/logo.svg" alt="OgaLandlord" style={{ height: 40, objectFit: "contain" }}
         onError={(e) => { e.currentTarget.style.display = "none"; (e.currentTarget.nextSibling as HTMLElement).style.display = "flex"; }} />
       <div style={{ display: "none", alignItems: "center", gap: 4, width: 34, height: 34, borderRadius: 8, background: "#014421", justifyContent: "center" }}>
@@ -175,126 +173,31 @@ function Logo() {
   );
 }
 
-function Footer() {
+function Footer({ navigate }: { navigate: ReturnType<typeof useNavigate> }) {
   const [email, setEmail] = useState("");
   return (
     <footer style={{ background: "#014421", color: "#fff" }}>
-      <div className="wl-footer-inner px-4" style={{ margin: "0 auto" }}>
-        <div
-          className="wl-footer-top py-10"
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "flex-start",
-            marginBottom: 56,
-            flexWrap: "wrap",
-            gap: 32,
-          }}
-        >
+      <div className="wl-footer-inner" style={{ maxWidth: 1200, margin: "0 auto", padding: "56px 60px 0" }}>
+        <div className="wl-footer-top" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 56, flexWrap: "wrap", gap: 32 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <img
-              src="/assets/logo3.png"
-              alt="OgaLandlord logo"
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                display: "block",
-                maxWidth: 180,
-              }}
-              onError={(e) => {
-                e.currentTarget.style.display = "none";
-              }}
-            />
+            <img src="/assets/logo3.png" alt="OgaLandlord logo" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", maxWidth: 180 }}
+              onError={(e) => { e.currentTarget.style.display = "none"; }} />
           </div>
           <div className="wl-footer-newsletter">
-            <p
-              style={{
-                fontSize: 14,
-                color: "rgba(255,255,255,0.8)",
-                marginBottom: 12,
-              }}
-            >
-              Subscribe to our newsletter
-            </p>
+            <p style={{ fontSize: 14, color: "rgba(255,255,255,0.8)", marginBottom: 12 }}>Subscribe to our newsletter</p>
             <div style={{ display: "flex" }}>
-              <input
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                style={{
-                  padding: "11px 18px",
-                  borderRadius: "50px 50px 50px 50px",
-                  border: "none",
-                  fontSize: 14,
-                  outline: "none",
-                  width: 280,
-                  background: "#fff",
-                  color: "#111827",
-                  fontFamily: "inherit",
-                }}
-              />
-              <button
-                style={{
-                  padding: "3px 13px",
-                  background: "#014421",
-                  border: "1px solid rgba(255,255,255,0.25)",
-                  borderLeft: "none",
-                  borderRadius: "50px 50px 50px 50px",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginLeft: "-44px",
-                  transform: "scale(0.9)",
-                  transformOrigin: "center",
-                }}
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M5 12h14M12 5l7 7-7 7"
-                    stroke="white"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email"
+                style={{ padding: "11px 18px", borderRadius: "50px 50px 50px 50px", border: "none", fontSize: 14, outline: "none", width: 280, background: "#fff", color: "#111827", fontFamily: "inherit" }} />
+              <button style={{ padding: "3px 13px", background: "#014421", border: "1px solid rgba(255,255,255,0.25)", borderLeft: "none", borderRadius: "50px 50px 50px 50px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", marginLeft: "-44px", transform: "scale(0.9)", transformOrigin: "center" }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
               </button>
             </div>
           </div>
         </div>
-        <div
-          style={{
-            borderTop: "1px solid rgba(255, 255, 255, 0.93)",
-            paddingTop: 24,
-            paddingBottom: 8,
-          }}
-        >
-          <p
-            style={{
-              fontSize: 12,
-              color: "rgba(255,255,255,0.4)",
-              textAlign: "left",
-            }}
-          >
-            © COPYRIGHT 2026 OGALANDLORD
-          </p>
+        <div style={{ borderTop: "1px solid rgba(255, 255, 255, 0.93)", paddingTop: 24, paddingBottom: 8 }}>
+          <p style={{ fontSize: 12, color: "rgba(255,255,255,0.4)", textAlign: "left" }}>© COPYRIGHT 2026 OGALANDLORD</p>
         </div>
-        <div
-          className="wl-footer-watermark"
-          style={{
-            fontSize: "160px",
-            fontWeight: 700,
-            textAlign: "center",
-            color: "rgba(255,255,255,0.07)",
-            letterSpacing: "-3px",
-            userSelect: "none",
-            lineHeight: 1,
-            marginTop: 8,
-            paddingTop: "26px",
-            overflow: "hidden",
-          }}
-        >
+        <div className="wl-footer-watermark" style={{ fontSize: "160px", fontWeight: 700, textAlign: "center", color: "rgba(255,255,255,0.07)", letterSpacing: "-3px", userSelect: "none", lineHeight: 1, marginTop: 8, paddingTop: "26px", overflow: "hidden" }}>
           Ogalandlord
         </div>
       </div>
@@ -312,10 +215,10 @@ const FAQS = [
 function FAQSection() {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section className="wl-faq-section px-4 py-20" style={{ background: "#f2fdf5", padding: "" }}>
-      <div className="wl-faq-inner" style={{ margin: "0 auto", display: "flex", gap: 80, flexWrap: "wrap" }}>
+    <section className="wl-faq-section" style={{ background: "#f2fdf5", padding: "80px 40px" }}>
+      <div className="wl-faq-inner" style={{ maxWidth: 1100, margin: "0 auto", display: "flex", gap: 80, flexWrap: "wrap" }}>
         <div className="wl-faq-left" style={{ flex: "0 0 280px" }}>
-          <h2 className="text-green-700" style={{ fontSize: 28, fontWeight: 900, marginBottom: 12 }}>Frequently Asked Questions</h2>
+          <h2 style={{ fontSize: 28, fontWeight: 900, color: "#111827", marginBottom: 12 }}>Frequently Asked Questions</h2>
           <p style={{ fontSize: 14, color: "#6b7280", lineHeight: 1.65 }}>If there are question you want to ask. We will answer all your question.</p>
         </div>
         <div style={{ flex: 1, minWidth: 0 }}>
@@ -337,258 +240,56 @@ function FAQSection() {
   );
 }
 
-function WaitlistHero() {
+function WaitlistHero({ navigate }: { navigate: ReturnType<typeof useNavigate> }) {
   const [email, setEmail] = useState("");
   const [joined, setJoined] = useState(false);
 
   const handleJoin = () => { if (email.trim()) setJoined(true); };
 
   return (
-    <section className=" px-4 text-center bg-[#f0faf4]">
-      <div className="">
-        <h1
-          className="font-bold lg:pt-38 pt-26"
-          style={{
-            fontSize: "clamp(28px,4vw,48px)",
-            fontWeight: 600,
-            color: "#014421",
-            lineHeight: 1.2,
-            marginBottom: 16,
-          }}
-        >
-          A Safer Way to Rent Is
-          <br />
-          Launching Soon
+    <section className="wl-hero-section" style={{ background: "#f0faf4", padding: "64px 40px 0", textAlign: "center" }}>
+      <div style={{ maxWidth: 720, margin: "0 auto" }}>
+        <h1 className="wl-hero-h1" style={{ fontSize: "clamp(28px,4vw,48px)", fontWeight: 600, color: "#014421", lineHeight: 1.2, marginBottom: 16 }}>
+          A Safer Way to Rent Is<br />Launching Soon
         </h1>
-        <p
-          className="font-medium"
-          style={{ fontSize: 15, color: "#6b7280", marginBottom: 32 }}
-        >
-          Be the first to access verified listings, trusted agents, and tools
-          designed to help you avoid rental scams.
+        <p className="wl-hero-p" style={{ fontSize: 15, color: "#6b7280", marginBottom: 32 }}>
+          Be the first to access verified listings, trusted agents, and tools designed to help you avoid rental scams.
         </p>
 
         {joined ? (
-          <div
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 10,
-              background: "#014421",
-              color: "#fff",
-              borderRadius: 10,
-              padding: "14px 28px",
-              fontSize: 20,
-              fontWeight: 700,
-              marginBottom: 16,
-            }}
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M5 13l4 4L19 7"
-                stroke="white"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 10, background: "#014421", color: "#fff", borderRadius: 10, padding: "14px 28px", fontSize: 15, fontWeight: 700, marginBottom: 16 }}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
             You're on the list!
           </div>
         ) : (
-          <div
-            className="wl-waitlist-input-row"
-            style={{
-              display: "flex",
-              gap: 0,
-              justifyContent: "center",
-              marginBottom: 16,
-              maxWidth: 460,
-              margin: "0 auto 16px",
-            }}
-          >
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && handleJoin()}
-              placeholder="Enter Your Email"
-              className=" border border-gray-300 p-2 px-6 rounded-full w-full text-[16px] bg-white  "
-            />
-            <button
-              onClick={handleJoin}
-              className="wl-waitlist-btn"
-              style={{
-                padding: "13px 22px",
-                background: "#014421",
-                color: "#fff",
-                border: "none",
-                borderRadius: "50px 50px 50px 50px",
-                fontSize: 14,
-                fontWeight: 700,
-                cursor: "pointer",
-                fontFamily: "inherit",
-                display: "flex",
-                alignItems: "center",
-                gap: 8,
-                whiteSpace: "nowrap",
-                marginLeft: "-90px",
-              }}
-            >
+          <div className="wl-waitlist-input-row" style={{ display: "flex", gap: 0, justifyContent: "center", marginBottom: 16, maxWidth: 460, margin: "0 auto 16px" }}>
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} onKeyDown={(e) => e.key === "Enter" && handleJoin()} placeholder="Enter Your Email"
+              className="wl-waitlist-input"
+              style={{ flex: 1, padding: "13px 30px", borderRadius: "50px 50px 50px 50px", border: "1.5px solid #d1fae5", borderRight: "none", fontSize: 14, outline: "none", background: "#fff", color: "#111827", fontFamily: "inherit" }} />
+            <button onClick={handleJoin} className="wl-waitlist-btn"
+              style={{ padding: "13px 22px", background: "#014421", color: "#fff", border: "none", borderRadius: "50px 50px 50px 50px", fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", gap: 8, whiteSpace: "nowrap", marginLeft: "-90px" }}>
               Join Waitlist
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M5 12h14M12 5l7 7-7 7"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
             </button>
           </div>
         )}
 
-        <p
-          className="wl-hero-count"
-          style={{ fontSize: 13, color: "#9ca3af", marginBottom: 48 }}
-        >
-          80 People Joined
-        </p>
-
-        <Link to="/Home">
-          <button
-            onClick={handleJoin}
-            className=" m-auto bg-green-700 p-2 flex gap-2 mb-2 items-center text-white font-medium rounded-lg"
-          >
-            Home
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M5 12h14M12 5l7 7-7 7"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
-        </Link>
+        <p className="wl-hero-count" style={{ fontSize: 13, color: "#9ca3af", marginBottom: 48 }}>80 People Joined</p>
       </div>
 
       {/* Hero grid */}
-      <div
-        className=" wl-hero-grid "
-        style={{
-          margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "42fr 33fr 25fr",
-          gridTemplateRows: "auto auto",
-          gap: 12,
-        }}
-      >
-        <div
-          className="wl-grid-panel1"
-          style={{
-            gridColumn: "1 / 2",
-            gridRow: "1 / 3",
-            borderRadius: 16,
-            overflow: "hidden",
-            minHeight: 440,
-            position: "relative",
-            background: "#b6dfc4",
-          }}
-        >
-          <img
-            src="/assets/hero-house.png"
-            alt="Nigerian house exterior"
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              display: "block",
-            }}
-            onError={(e) => {
-              e.currentTarget.style.display = "none";
-            }}
-          />
+      <div className="wl-hero-grid" style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "42fr 33fr 25fr", gridTemplateRows: "auto auto", gap: 12 }}>
+        <div className="wl-grid-panel1" style={{ gridColumn: "1 / 2", gridRow: "1 / 3", borderRadius: 16, overflow: "hidden", minHeight: 440, position: "relative", background: "#b6dfc4" }}>
+          <img src="/assets/hero-house.png" alt="Nigerian house exterior" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} onError={(e) => { e.currentTarget.style.display = "none"; }} />
         </div>
-        <div
-          className="wl-grid-panel2"
-          style={{
-            gridColumn: "2 / 3",
-            gridRow: "1 / 2",
-            background: "#014421",
-            borderRadius: 13,
-            height: "96%",
-            width: "92%",
-            marginTop: "6px",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            gap: 11,
-          }}
-        >
-          <img
-            src="/assets/frame2.png"
-            alt="Agent verification notifications"
-            style={{
-              width: "100%",
-              height: "110%",
-              objectFit: "contain",
-              display: "block",
-            }}
-            onError={(e) => {
-              e.currentTarget.style.display = "none";
-            }}
-          />
+        <div className="wl-grid-panel2" style={{ gridColumn: "2 / 3", gridRow: "1 / 2", background: "#014421", borderRadius: 13, height: "96%", width: "92%", marginTop: "6px", display: "flex", flexDirection: "column", justifyContent: "center", gap: 11 }}>
+          <img src="/assets/frame2.png" alt="Agent verification notifications" style={{ width: "100%", height: "110%", objectFit: "contain", display: "block" }} onError={(e) => { e.currentTarget.style.display = "none"; }} />
         </div>
-        <div
-          className="wl-grid-panel3"
-          style={{
-            gridColumn: "3 / 4",
-            gridRow: "1 / 2",
-            background: "#014421",
-            borderRadius: 16,
-            display: "flex",
-            marginLeft: "-23px",
-            alignItems: "center",
-            width: "110%",
-            justifyContent: "center",
-            minHeight: 160,
-            position: "relative",
-          }}
-        >
-          <img
-            src="/assets/housekey.png"
-            alt="OgaLandlord icon"
-            style={{ width: 80, height: 80, objectFit: "contain" }}
-            onError={(e) => {
-              e.currentTarget.style.display = "none";
-            }}
-          />
+        <div className="wl-grid-panel3" style={{ gridColumn: "3 / 4", gridRow: "1 / 2", background: "#014421", borderRadius: 16, display: "flex", marginLeft: "-23px", alignItems: "center", width: "110%", justifyContent: "center", minHeight: 160, position: "relative" }}>
+          <img src="/assets/housekey.png" alt="OgaLandlord icon" style={{ width: 80, height: 80, objectFit: "contain" }} onError={(e) => { e.currentTarget.style.display = "none"; }} />
         </div>
-        <div
-          className="wl-grid-panel4"
-          style={{
-            flex: 1,
-            gridColumn: "2 / 4",
-            gridRow: "2 / 3",
-            background: "#014421",
-            borderRadius: 16,
-            gap: 20,
-            display: "flex",
-            alignItems: "flex-end",
-            padding: "24px 24px 0",
-            position: "relative",
-            overflow: "hidden",
-          }}
-        >
-          <img
-            src="/assets/frame1.png"
-            style={{ width: "100%", height: "95%", display: "block" }}
-            onError={(e) => {
-              e.currentTarget.style.display = "none";
-            }}
-          />
+        <div className="wl-grid-panel4" style={{ flex: 1, gridColumn: "2 / 4", gridRow: "2 / 3", background: "#014421", borderRadius: 16, gap: 20, display: "flex", alignItems: "flex-end", padding: "24px 24px 0", position: "relative", overflow: "hidden" }}>
+          <img src="/assets/frame1.png" style={{ width: "100%", height: "95%", display: "block" }} onError={(e) => { e.currentTarget.style.display = "none"; }} />
         </div>
       </div>
     </section>
@@ -599,108 +300,32 @@ export default function Waitlist() {
   const navigate = useNavigate();
 
   return (
-    <div
-      className="h-screen"
-      style={{
-        fontFamily: "'Segoe UI','Helvetica Neue',Arial,sans-serif",
-        color: "#111827",
-      }}
-    >
+    <div style={{ fontFamily: "'Segoe UI','Helvetica Neue',Arial,sans-serif", color: "#111827" }}>
       <style>{mobileStyles}</style>
 
       {/* Header */}
-      <header
-        className="border-b border-gray-300 lg:p-10 p-5 bg-[#f2fdf5] flex justify-center fixed top-0 z-50 w-full "
-       
-      >
-        <div onClick={() => navigate("/Home")} style={{ cursor: "pointer" }}>
-          <Logo />
-        </div>
+      <header className="wl-header" style={{ background: "#f2fdf5", height: 60, display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <div onClick={() => navigate("/Home")} style={{ cursor: "pointer" }}><Logo /></div>
       </header>
 
-      <WaitlistHero />
+      <WaitlistHero navigate={navigate} />
 
       {/* WHY */}
-      <section className="px-4 bg-[#f0faf4] ">
-        <div className=" pt-20">
-          <h2
-            className="wl-why-h2"
-            style={{
-              fontSize: 30,
-              fontWeight: 900,
-              color: "#014421",
-              marginBottom: 8,
-            }}
-          >
-            Why Oga<span style={{ fontWeight: 400 }}>Landlord</span>
-          </h2>
-          <p
-            style={{
-              fontSize: 16,
-              color: "#6b7280",
-              marginBottom: 48,
-              maxWidth: 360,
-            }}
-          >
-            We remove the guesswork from house hunting by verifying agents and
-            protecting tenants at every step.
-          </p>
-          <div
-            className="wl-why-cards gap-3"
-            style={{ display: "flex", flexWrap: "wrap" }}
-          >
+      <section className="wl-why-section" style={{ background: "#f0faf4", padding: "80px 40px" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <h2 className="wl-why-h2" style={{ fontSize: 26, fontWeight: 900, color: "#014421", marginBottom: 8 }}>Why Oga<span style={{ fontWeight: 400 }}>Landlord</span></h2>
+          <p style={{ fontSize: 14, color: "#6b7280", marginBottom: 48, maxWidth: 360 }}>We remove the guesswork from house hunting by verifying agents and protecting tenants at every step.</p>
+          <div className="wl-why-cards" style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
             {[
-              {
-                icon: "/assets/icons/icon2.png",
-                title: "Verified Agents",
-                desc: "Every agent is checked for identity, location, and rental history before approval.",
-              },
-              {
-                icon: "/assets/icons/icon1.png",
-                title: "Trust Scores",
-                desc: "Agents earn trust scores based on verification status and tenant feedback.",
-              },
-              {
-                icon: "/assets/icons/icon3.png",
-                title: "Community Reporting",
-                desc: "Real reports from tenants help flag fake agents and risky listings early.",
-              },
+              { icon: "/assets/icons/icon2.png", title: "Verified Agents", desc: "Every agent is checked for identity, location, and rental history before approval." },
+              { icon: "/assets/icons/icon1.png", title: "Trust Scores", desc: "Agents earn trust scores based on verification status and tenant feedback." },
+              { icon: "/assets/icons/icon3.png", title: "Community Reporting", desc: "Real reports from tenants help flag fake agents and risky listings early." },
             ].map((item, i) => (
-              <div
-                className="wl-why-card"
-                key={i}
-                style={{
-                  flex: "1 1 280px",
-                  background: "#ffffff",
-                  borderRadius: 16,
-                  padding: "28px 28px",
-                  border: "1px solid #e5e7eb",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  minHeight: 240,
-                }}
-              >
-                <img
-                  src={item.icon}
-                  alt={item.title}
-                  style={{ width: 48, height: 48 }}
-                />
+              <div className="wl-why-card" key={i} style={{ flex: "1 1 280px", background: "#ffffff", borderRadius: 16, padding: "28px 28px", border: "1px solid #e5e7eb", display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: 240 }}>
+                <img src={item.icon} alt={item.title} style={{ width: 48, height: 48 }} />
                 <div>
-                  <h4 className="text-green-700"
-                    style={{
-                      fontSize: 20,
-                      fontWeight: 700,
-                      marginBottom: 8,
-                    }}
-                  >
-                    {item.title}
-                  </h4>
-                  <p
-                    style={{ fontSize: 16, color: "#6b7280", lineHeight: 1.65 }}
-                  >
-                    {item.desc}
-                  </p>
+                  <h4 style={{ fontSize: 20, fontWeight: 700, color: "#111827", marginBottom: 8 }}>{item.title}</h4>
+                  <p style={{ fontSize: 13, color: "#6b7280", lineHeight: 1.65 }}>{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -709,113 +334,27 @@ export default function Waitlist() {
       </section>
 
       {/* HOW IT WORKS */}
-      <section className=" p-4 pt-20" style={{ background: "#f0faf4" }}>
-        <div className="">
-          <h2 className="text-green-700 mb-4 text-[28px] font-bold ">
-            How It Works
-          </h2>
-          <p
-            style={{
-              fontSize: 14,
-              color: "#6b7280",
-              marginBottom: 48,
-              maxWidth: 365,
-            }}
-          >
-            Follow a clear step-by-step process from agent selection to
-            inspection.
-          </p>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 ">
-            <div className="overflow-hidden rounded-lg overflow-hidden relative ">
-              <img
-                src="/assets/how-it-works.png"
-                alt="How OgaLandlord works"
-                style={{ width: "130%", height: "100%", objectFit: "cover" }}
-                onError={(e) => {
-                  e.currentTarget.style.display = "none";
-                }}
-              />
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  background: "rgba(176, 176, 176, 0.45)",
-                  backdropFilter: "blur(2px)",
-                  padding: "20px 24px",
-                  margin: 16,
-                  borderRadius: 12,
-                }}
-              >
-                <p
-                  style={{
-                    color: "#fff",
-                    fontSize: 14,
-                    lineHeight: 1.6,
-                    margin: 0,
-                  }}
-                >
-                  Tour properties with verified agents and avoid the risks that
-                  come with unverified listings.
-                </p>
+      <section className="wl-howitworks-section" style={{ padding: "80px 70px", background: "#f0faf4" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <h2 style={{ fontSize: 26, fontWeight: 900, color: "#111827", marginBottom: 8 }}>How It Works</h2>
+          <p style={{ fontSize: 14, color: "#6b7280", marginBottom: 48, maxWidth: 365 }}>Follow a clear step-by-step process from agent selection to inspection.</p>
+          <div className="wl-howitworks-inner" style={{ display: "flex", gap: 64, flexWrap: "wrap", alignItems: "flex-start" }}>
+            <div className="wl-howitworks-img" style={{ height: 460, width: 560, borderRadius: 20, overflow: "hidden", position: "relative", background: "#a7f3d0" }}>
+              <img src="/assets/how-it-works.png" alt="How OgaLandlord works" style={{ width: "130%", height: "100%", objectFit: "cover" }} onError={(e) => { e.currentTarget.style.display = "none"; }} />
+              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "rgba(176, 176, 176, 0.45)", backdropFilter: "blur(2px)", padding: "20px 24px", margin: 16, borderRadius: 12 }}>
+                <p style={{ color: "#fff", fontSize: 14, lineHeight: 1.6, margin: 0 }}>Tour properties with verified agents and avoid the risks that come with unverified listings.</p>
               </div>
             </div>
             <div style={{ flex: 1, minWidth: 280 }}>
               {[
-                {
-                  num: "01",
-                  title: "Agent Verification",
-                  desc: "Agents earn trust scores based on verification status and tenant feedback.",
-                },
-                {
-                  num: "02",
-                  title: "Listings Upload",
-                  desc: "Verified agents upload and manage their rental listings on the platform.",
-                },
-                {
-                  num: "03",
-                  title: "Safe Contact",
-                  desc: "Tenants connect with verified agents and inspect properties before any payment.",
-                },
+                { num: "01", title: "Agent Verification", desc: "Agents earn trust scores based on verification status and tenant feedback." },
+                { num: "02", title: "Listings Upload", desc: "Verified agents upload and manage their rental listings on the platform." },
+                { num: "03", title: "Safe Contact", desc: "Tenants connect with verified agents and inspect properties before any payment." },
               ].map((step) => (
-                <div
-                  key={step.num}
-                  style={{
-                    paddingBottom: 32,
-                    marginBottom: 32,
-                    borderBottom: "1px solid #d1fae5",
-                  }}
-                >
-                  <p
-                    style={{
-                      fontSize: 13,
-                      fontWeight: 500,
-                      color: "#6b7280",
-                      margin: "0 0 10px 0",
-                    }}
-                  >
-                    {step.num}
-                  </p>
-                  <h3
-                    className="mt-10 text-green-700"
-                    style={{
-                      fontSize: 20,
-                      fontWeight: 500,
-                    }}
-                  >
-                    {step.title}
-                  </h3>
-                  <p
-                    className="mt-5"
-                    style={{
-                      fontSize: 16,
-                      color: "#6b7280",
-                      lineHeight: 1.65,
-                    }}
-                  >
-                    {step.desc}
-                  </p>
+                <div key={step.num} style={{ paddingBottom: 32, marginBottom: 32, borderBottom: "1px solid #d1fae5" }}>
+                  <p style={{ fontSize: 13, fontWeight: 500, color: "#6b7280", margin: "0 0 10px 0" }}>{step.num}</p>
+                  <h3 style={{ fontSize: 17, fontWeight: 700, color: "#014421", margin: "0 0 8px 0" }}>{step.title}</h3>
+                  <p style={{ fontSize: 13, color: "#6b7280", lineHeight: 1.65, margin: 0 }}>{step.desc}</p>
                 </div>
               ))}
             </div>
@@ -824,225 +363,60 @@ export default function Waitlist() {
       </section>
 
       {/* HAVE A PROPERTY */}
-      <section className=" bg-[#f2fdf5] px-4 pt-20">
-        <div className="  bg-[#fff] rounded-lg p-4 grid lg:grid-cols-2 gap-5  grid-cols-1 items-center ">
-          <div className="  flex flex-col ">
-            <h2
-              className="text-green-700"
-              style={{
-                fontSize: 28,
-                fontWeight: 700,
-                marginBottom: 12,
-                lineHeight: 1.25,
-              }}
-            >
-              Have a Property to Rent?
-              <br />
-              Let Verified Agents Handle It.
-            </h2>
-            <p
-              style={{
-                fontSize: 15,
-                color: "#6b7280",
-                marginBottom: 20,
-                lineHeight: 1.7,
-                width: "90%",
-              }}
-            >
-              Connect with verified rental agents who can manage inspections,
-              tenant sourcing, and negotiations—without the stress or
-              uncertainty.
-            </p>
+      <section className="wl-property-section" style={{ padding: "70px 50px", background: "#f2fdf5" }}>
+        <div className="wl-property-inner" style={{ padding: "90px 50px", maxWidth: 1200, margin: "0 auto", display: "flex", gap: 48, alignItems: "center", flexWrap: "wrap", background: "#ffffff", position: "relative" }}>
+          <div style={{ flex: 1, minWidth: 280 }}>
+            <h2 className="wl-property-h2" style={{ fontSize: 28, fontWeight: 700, color: "#014421", marginBottom: 12, lineHeight: 1.25 }}>Have a Property to Rent?<br />Let Verified Agents Handle It.</h2>
+            <p style={{ fontSize: 15, color: "#6b7280", marginBottom: 20, lineHeight: 1.7, width: "90%" }}>Connect with verified rental agents who can manage inspections, tenant sourcing, and negotiations—without the stress or uncertainty.</p>
             <ul style={{ paddingLeft: 0, listStyle: "none", marginBottom: 28 }}>
-              {[
-                "Verified and accountable agents",
-                "Transparent rental process",
-                "Reduced risk of disputes and scams",
-              ].map((item) => (
-                <li
-                  key={item}
-                  style={{
-                    fontSize: 13,
-                    color: "#374151",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 8,
-                  }}
-                >
-                  <span style={{ color: "#014421", fontSize: 16 }}>•</span>{" "}
-                  {item}
+              {["Verified and accountable agents", "Transparent rental process", "Reduced risk of disputes and scams"].map((item) => (
+                <li key={item} style={{ fontSize: 13, color: "#374151", marginBottom: 8, display: "flex", alignItems: "center", gap: 8 }}>
+                  <span style={{ color: "#014421", fontSize: 16 }}>•</span> {item}
                 </li>
               ))}
             </ul>
-            <button
-              className="flex items-center gap-3 bg-green-900 px-10 py-2 rounded-lg text-white w-fit text-md text-center"
-              onClick={() => navigate("/Waitlist")}
-            >
+            <button className="wl-property-btn" onClick={() => navigate("/Waitlist")}
+              style={{ padding: "12px 32px", background: "#014421", color: "#fff", border: "none", borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: "inherit", display: "inline-flex", alignItems: "center", gap: 8 }}>
               Join Waitlist
-              <ArrowRight size={16} />
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
             </button>
           </div>
-          <div className="wl-property-img  rounded-lg relative bg-[#a7f3d0] overflow-hidden ">
-            <img
-              src="/assets/verifiedagents.png"
-              alt="Property"
-              className=" w-full object-cover"
-              onError={(e) => {
-                e.currentTarget.style.display = "none";
-              }}
-            />
+          <div className="wl-property-img" style={{ flex: "0 0 600px", height: 370, width: 700, borderRadius: 20, overflow: "hidden", position: "relative", background: "#a7f3d0" }}>
+            <img src="/assets/verifiedagents.png" alt="Property" style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} onError={(e) => { e.currentTarget.style.display = "none"; }} />
           </div>
         </div>
       </section>
 
       {/* ARE YOU AN AGENT */}
-      <section className="bg-[#f2fdf5] px-4 pt-20 text-green-700">
-        <div>
-          <h2
-            style={{
-              fontSize: 33,
-              fontWeight: 630,
-              marginBottom: 8,
-              textAlign: "center",
-            }}
-          >
-            Are You a Real Estate Agent?
-          </h2>
-          <div
-            className="wl-agent-cards"
-            style={{
-              display: "flex",
-              gap: 24,
-              flexWrap: "wrap",
-              marginTop: 50,
-            }}
-          >
-            <div
-              className="wl-agent-card"
-              style={{
-                flex: "0 0 430px",
-                borderRadius: 16,
-                height: 310,
-                overflow: "hidden",
-                position: "relative",
-                background: "#fff",
-              }}
-            >
-              <img
-                src="/assets/agent1.png"
-                alt="Agent"
-                style={{
-                  width: "120%",
-                  height: "110%",
-                  objectFit: "contain",
-                  display: "block",
-                  marginTop: "-80px",
-                }}
-                onError={(e) => {
-                  e.currentTarget.style.display = "none";
-                }}
-              />
-              <p
-                className="px-2 pb-3"
-                style={{
-                  fontSize: 16,
-                  color: "#6b7280",
-                }}
-              >
-                Join thousands of verified agents building trust with clients
-                Create your professional profile and showcase your expertise
-                today.
-              </p>
+      <section className="wl-agent-section" style={{ padding: "80px 40px", background: "#f2fdf5" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <h2 style={{ fontSize: 33, fontWeight: 630, color: "#014421", marginBottom: 8, textAlign: "center" }}>Are You a Real Estate Agent?</h2>
+          <div className="wl-agent-cards" style={{ display: "flex", gap: 24, flexWrap: "wrap", marginTop: 50 }}>
+            <div className="wl-agent-card" style={{ flex: "0 0 430px", borderRadius: 16, height: 310, overflow: "hidden", position: "relative", background: "#fff" }}>
+              <img src="/assets/agent1.png" alt="Agent" style={{ width: "120%", height: "110%", objectFit: "contain", display: "block", marginTop: "-80px" }} onError={(e) => { e.currentTarget.style.display = "none"; }} />
+              <p style={{ fontSize: 13, color: "#6b7280", lineHeight: 1.40, marginLeft: "5px" }}>Join thousands of verified agents building trust with clients.</p>
             </div>
-            <div
-              className="flex  justify-between flex-col "
-              style={{
-                flex: 1,
-                minWidth: 200,
-                background: "#fff",
-                borderRadius: 16,
-                padding: "28px 20px",
-                height: 310,
-                border: "1px solid #e5e7eb",
-              }}
-            >
-              <h3
-                className="text-green-700"
-                style={{
-                  fontSize: 30,
-                  fontWeight: 500,
-                  marginBottom: 40,
-                }}
-              >
-                Increase Your <br /> Visibility
-              </h3>
-              <p className="text-gray-500 text-[16px]">
-                Show up where serious buyers and sellers are actively searching
-                for trusted agents.
-              </p>
+            <div className="wl-agent-card" style={{ flex: 1, minWidth: 200, background: "#fff", borderRadius: 16, padding: "28px 20px", height: 310, border: "1px solid #e5e7eb" }}>
+              <h3 style={{ fontSize: 22, fontWeight: 700, color: "#014421", marginBottom: 40 }}>Increase Your Visibility</h3>
+              <p style={{ fontSize: 13, color: "#6b7280", lineHeight: 1.65, marginTop: 100 }}>Show up where serious buyers and sellers are actively searching for trusted agents.</p>
             </div>
-            <div
-              className="flex  justify-between flex-col"
-              style={{
-                flex: 1,
-                minWidth: 200,
-                background: "#014421",
-                borderRadius: 16,
-                padding: "28px 24px",
-                height: 310,
-              }}
-            >
-              <h3
-                style={{
-                  fontSize: 30,
-                  fontWeight: 500,
-                  color: "#fff",
-                  marginBottom: 40,
-                }}
-              >
-                Build Instant Trust
-              </h3>
-              <p
-                style={{
-                  fontSize: 16,
-                  color: "rgb(255, 255, 255)",
-                  lineHeight: 1.65,
-                }}
-              >
-                Stand out with a verified, credible profile that reassures
-                clients before the first conversation.
-              </p>
+            <div className="wl-agent-card" style={{ flex: 1, minWidth: 200, background: "#014421", borderRadius: 16, padding: "28px 24px", height: 310 }}>
+              <h3 style={{ fontSize: 22, fontWeight: 700, color: "#fff", marginBottom: 40 }}>Build Instant Trust</h3>
+              <p style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", lineHeight: 1.65, marginTop: 100 }}>Stand out with a verified, credible profile that reassures clients before the first conversation.</p>
             </div>
           </div>
-          <div
-            className="wl-agent-btn-row"
-            style={{ textAlign: "center", marginTop: 36 }}
-          >
-            <button
-              className="wl-agent-btn flex items-center justify-center m-auto px-10 py-2"
-              onClick={() => navigate("/Waitlist")}
-              style={{
-                background: "#014421",
-                color: "#fff",
-                border: "none",
-                borderRadius: 8,
-                fontSize: 14,
-                fontWeight: 500,
-                cursor: "pointer",
-                fontFamily: "inherit",
-                boxShadow: "0 4px 16px rgba(1,68,33,0.25)",
-                gap: 8,
-              }}
-            >
+          <div className="wl-agent-btn-row" style={{ textAlign: "center", marginTop: 36 }}>
+            <button className="wl-agent-btn" onClick={() => navigate("/Waitlist")}
+              style={{ padding: "12px 44px", background: "#014421", color: "#fff", border: "none", borderRadius: 8, fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: "inherit", boxShadow: "0 4px 16px rgba(1,68,33,0.25)", display: "inline-flex", alignItems: "center", gap: 8 }}>
               Join Waitlist
-              <ArrowRight size={16} />
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
             </button>
           </div>
         </div>
       </section>
 
       <FAQSection />
-      <Footer />
+      <Footer navigate={navigate} />
     </div>
   );
 }

@@ -1,24 +1,21 @@
-// Login1.tsx — Tenant Login — Responsive Mobile
+// Login1.tsx — Tenant Login — Responsive Mobile (Tailwind CSS)
 import { LeftSection2 } from "../../../components/shared/LeftSection2";
 import LoginForm from "../../../components/tenant/LoginForm1";
 
-
-// Mobile-aware Login1 page wrapper
 export default function Login1() {
   return (
-    <>
-      {/* <style>{mobileStyles}</style> */}
-      <div className="h-screen grid md:grid-cols-2 overflow-hidden w-full">
-        {/* LEFT PANEL */}
-        <div className="overflow-hidden w-full">
-          <LeftSection2 />
-        </div>
+    <div className="h-screen flex overflow-hidden">
 
-        {/* RIGHT PANEL */}
-        <div className=" w-full " >
-          <LoginForm />
-        </div>
+      {/* LEFT PANEL — hidden on mobile, matches desktop split layout */}
+      <div className="hidden md:block w-[45%] flex-shrink-0 overflow-hidden">
+        <LeftSection2 />
       </div>
-    </>
+
+      {/* RIGHT PANEL — full width on mobile */}
+      <div className="flex-1 min-w-0 overflow-hidden flex flex-col md:w-auto">
+        <LoginForm />
+      </div>
+
+    </div>
   );
 }

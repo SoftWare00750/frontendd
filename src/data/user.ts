@@ -14,8 +14,8 @@ export interface User {
 
 // ─── Storage keys ─────────────────────────────────────────────────────────────
 
-const USERS_KEY    = "ogalandlord_users";      // all registered users (array)
-const SESSION_KEY  = "ogalandlord_session";    // currently logged-in user
+const USERS_KEY   = "ogalandlord_users";   // all registered users (array)
+const SESSION_KEY = "ogalandlord_session"; // currently logged-in user
 
 // ─── Users array helpers ──────────────────────────────────────────────────────
 
@@ -38,8 +38,7 @@ function saveAllUsers(users: User[]): void {
 
 /**
  * Returns true if the email OR phone is already taken by ANY user
- * (regardless of role).  Pass the id of an existing user to exclude
- * them from the check during an update (not used on signup).
+ * (regardless of role).
  */
 export function isAlreadyRegistered(
   phoneNumber: string,
@@ -52,7 +51,12 @@ export function isAlreadyRegistered(
     if (u.phoneNumber === phone) {
       return { taken: true, field: "phone" };
     }
-    if (email && email.trim() && u.email && u.email.toLowerCase() === email.trim().toLowerCase()) {
+    if (
+      email &&
+      email.trim() &&
+      u.email &&
+      u.email.toLowerCase() === email.trim().toLowerCase()
+    ) {
       return { taken: true, field: "email" };
     }
   }
@@ -62,7 +66,10 @@ export function isAlreadyRegistered(
 // ─── Register new user ────────────────────────────────────────────────────────
 
 /**
- * Add a new user to the store.
+ * Add a new user to the store and immediately persist them as the active
+ * session so that getSession() returns the user on the very next call
+ * (e.g. inside VerifyPhone which reads session?.email).
+ *
  * Throws if phone or email already exists.
  */
 export function registerUser(user: User): void {
@@ -74,14 +81,19 @@ export function registerUser(user: User): void {
         : "This email address is already registered."
     );
   }
-  const users = getAllUsers();
+
   const normalised: User = {
     ...user,
     phoneNumber: user.phoneNumber.replace(/\s/g, ""),
     email: user.email?.trim() || undefined,
   };
+
+  const users = getAllUsers();
   users.push(normalised);
   saveAllUsers(users);
+
+  // ← Fix: save session immediately so VerifyPhone can read email via getSession()
+  saveSession(normalised);
 }
 
 // ─── Session helpers ──────────────────────────────────────────────────────────
@@ -118,7 +130,8 @@ export function loginUser(identifier: string, password: string): User | null {
 
   const user = users.find(
     (u) =>
-      (u.phoneNumber === id || (u.email && u.email.toLowerCase() === id.toLowerCase())) &&
+      (u.phoneNumber === id ||
+        (u.email && u.email.toLowerCase() === id.toLowerCase())) &&
       u.password === password
   );
 

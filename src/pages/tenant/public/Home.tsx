@@ -2,8 +2,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import TestimonialCarousel from "./../../../components/shared/TestimonialCarousel.tsx";
-import Navbar from "./Navbar.tsx";
-import { ArrowRight } from "lucide-react";
 
 const mobileStyles = `
   @media (max-width: 768px) {
@@ -155,125 +153,95 @@ const mobileStyles = `
   }
 `;
 
- function Footer() {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-
-  const footerLinks = [
-    {
-      title: "Pages",
-      links: [
-        { label: "About us", path: "/AboutUs" },
-        { label: "Listings", path: "/Listings1" },
-        { label: "Agents", path: "/AgentList" },
-      ],
-    },
-    {
-      title: "Support",
-      links: [
-        { label: "FAQ", path: "/FAQ" },
-        { label: "Contact Us", path: "/Contact" },
-      ],
-    },
-    {
-      title: "Legal",
-      links: [
-        { label: "Privacy Policy", path: "/privacy" },
-        { label: "Terms of Use", path: "/terms" },
-      ],
-    },
-  ];
-
+function Logo() {
   return (
-    <footer className="bg-[#014421] text-white relative overflow-hidden">
-      <div className=" mx-auto px-4 pt-14">
-        {/* Top Section */}
-        <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-10 mb-14">
-          {/* Logo */}
-          <div className="flex items-center gap-2">
-            <img
-              src="/assets/logo3.png"
-              alt="OgaLandlord logo"
-              className="h-10 object-contain"
-              onError={(e) => (e.currentTarget.style.display = "none")}
-            />
+    <div style={{ display: "flex", alignItems: "center", gap: 6, cursor: "pointer" }}>
+      <img src="/assets/logo.svg" alt="OgaLandlord" style={{ height: 32, objectFit: "contain" }}
+        onError={(e) => { e.currentTarget.style.display = "none"; (e.currentTarget.nextSibling as HTMLElement).style.display = "flex"; }} />
+      <div style={{ display: "none", alignItems: "center", gap: 4, width: 32, height: 32, borderRadius: 8, background: "#014421", justifyContent: "center" }}>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <circle cx="9" cy="9" r="6" stroke="white" strokeWidth="2" />
+          <path d="M13 13l5 5" stroke="white" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Navbar({ navigate }: { navigate: ReturnType<typeof useNavigate> }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  return (
+    <>
+      <nav className="home-navbar" style={{ position: "sticky", top: 0, zIndex: 100, background: "#f2fdf5", borderBottom: "1px solid #e5e7eb", padding: "0 40px", height: 60, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div onClick={() => navigate("/Home")}> <Logo /></div>
+        <div className="home-navbar-links" style={{ display: "flex", alignItems: "center", gap: 32 }}>
+          {[{ label: "About Us", path: "/AboutUs" }, { label: "Listings", path: "/Listings1" }, { label: "Contact", path: "/Contact" }].map(({ label, path }) => (
+            <button key={label} onClick={() => navigate(path)} style={{ background: "none", border: "none", cursor: "pointer", fontSize: 14, fontWeight: 500, color: "#374151", fontFamily: "inherit", padding: 0 }}>{label}</button>
+          ))}
+          <button onClick={() => navigate("/Onboarding")} style={{ background: "#014421", color: "#fff", border: "none", borderRadius: 8, padding: "10px 20px", fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>Get Started</button>
+        </div>
+        <button className="home-navbar-menu-btn" onClick={() => setMenuOpen(!menuOpen)}
+          style={{ display: "none", background: "none", border: "none", cursor: "pointer", padding: 4, flexDirection: "column", gap: 5 }}>
+          <span style={{ width: 22, height: 2, background: "#374151", borderRadius: 2, display: "block", transition: "all 0.2s", transform: menuOpen ? "rotate(45deg) translate(5px,5px)" : "none" }} />
+          <span style={{ width: 22, height: 2, background: "#374151", borderRadius: 2, display: "block", opacity: menuOpen ? 0 : 1 }} />
+          <span style={{ width: 22, height: 2, background: "#374151", borderRadius: 2, display: "block", transition: "all 0.2s", transform: menuOpen ? "rotate(-45deg) translate(5px,-5px)" : "none" }} />
+        </button>
+      </nav>
+      {menuOpen && (
+        <div style={{ position: "fixed", top: 52, left: 0, right: 0, background: "#f2fdf5", zIndex: 99, borderBottom: "1px solid #e5e7eb", padding: "16px", display: "flex", flexDirection: "column", gap: 4 }}>
+          {[{ label: "About Us", path: "/AboutUs" }, { label: "Listings", path: "/Listings1" }, { label: "Contact", path: "/Contact" }].map(({ label, path }) => (
+            <button key={label} onClick={() => { navigate(path); setMenuOpen(false); }} style={{ background: "none", border: "none", cursor: "pointer", fontSize: 15, fontWeight: 500, color: "#374151", fontFamily: "inherit", padding: "10px 0", textAlign: "left" }}>{label}</button>
+          ))}
+          <button onClick={() => { navigate("/Onboarding"); setMenuOpen(false); }} style={{ background: "#014421", color: "#fff", border: "none", borderRadius: 8, padding: "12px 20px", fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: "inherit", marginTop: 8 }}>Get Started</button>
+        </div>
+      )}
+    </>
+  );
+}
+
+function Footer({ navigate }: { navigate: ReturnType<typeof useNavigate> }) {
+  const [email, setEmail] = useState("");
+  return (
+    <footer style={{ background: "#014421", color: "#fff" }}>
+      <div className="home-footer-inner" style={{ maxWidth: 1200, margin: "0 auto", padding: "56px 60px 0" }}>
+        <div className="home-footer-top" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 56, flexWrap: "wrap", gap: 32 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <img src="/assets/logo3.png" alt="OgaLandlord logo" style={{ height: 40, objectFit: "contain" }}
+              onError={(e) => { e.currentTarget.style.display = "none"; }} />
           </div>
-
-          {/* Newsletter */}
-          <div>
-            <p className="text-sm text-white mb-3">
-              Subscribe to our newsletter
-            </p>
-
-            <div className="flex w-full max-w-sm">
-              <input
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-l-lg text-sm text-gray-500 outline-none border border-gray-300 bg-white"
-              />
-              <button className="px-4 border cursor-pointer border-white border-l-0 rounded-r-lg flex items-center justify-center hover:bg-white/10 transition text-green-700">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M5 12h14M12 5l7 7-7 7"
-                    stroke="white"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+          <div className="home-footer-newsletter">
+            <p style={{ fontSize: 14, color: "rgba(255,255,255,0.8)", marginBottom: 12 }}>Subscribe to our newsletter</p>
+            <div style={{ display: "flex" }}>
+              <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email"
+                style={{ padding: "11px 18px", borderRadius: "8px 0 0 8px", border: "none", fontSize: 14, outline: "none", width: 240, background: "#fff", color: "#111827", fontFamily: "inherit" }} />
+              <button style={{ padding: "11px 16px", background: "#014421", border: "2px solid rgba(255,255,255,0.25)", borderLeft: "none", borderRadius: "0 8px 8px 0", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
               </button>
             </div>
           </div>
         </div>
-
-        {/* Links */}
-        <div className="grid grid-cols-3 md:grid-cols-3 gap-10 mb-12">
-          {footerLinks.map((col) => (
+        <div className="home-footer-cols" style={{ display: "flex", gap: 80, flexWrap: "wrap", marginBottom: 48 }}>
+          {[
+            { title: "Pages", links: [{ label: "About us", path: "/AboutUs" }, { label: "Listings", path: "/Listings1" }, { label: "Agents", path: "/AgentList" }] },
+            { title: "Support", links: [{ label: "FAQ", path: "/FAQ" }, { label: "Contact Us", path: "/Contact" }] },
+            { title: "Legal", links: [{ label: "Privacy Policy", path: "/privacy" }, { label: "Terms of Use", path: "/terms" }] },
+          ].map(col => (
             <div key={col.title}>
-              <p className="font-semibold text-sm mb-4">{col.title}</p>
-
-              <div className="space-y-2 text-[16px]">
-                {col.links.map(({ label, path }) => (
-                  <button
-                    key={label}
-                    onClick={() => navigate(path)}
-                    className="block text-sm text-white/60 hover:text-white transition text-left"
-                  >
-                    {label}
-                  </button>
-                ))}
-              </div>
+              <p style={{ fontWeight: 700, fontSize: 14, color: "#fff", marginBottom: 18 }}>{col.title}</p>
+              {col.links.map(({ label, path }) => (
+                <p key={label} style={{ marginBottom: 10 }}>
+                  <button onClick={() => navigate(path)} style={{ background: "none", border: "none", color: "rgba(255,255,255,0.6)", fontSize: 13, cursor: "pointer", padding: 0, fontFamily: "inherit", textAlign: "left" }}>{label}</button>
+                </p>
+              ))}
             </div>
           ))}
         </div>
-
-        {/* Bottom */}
-        <div className="border-t border-white/10 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-white/40">
-            © 2026 OgaLandlord. All rights reserved.
-          </p>
-
-          <div className="flex gap-4 text-white/50 text-sm">
-            <button
-              onClick={() => navigate("/privacy")}
-              className="hover:text-white transition"
-            >
-              Privacy
-            </button>
-            <button
-              onClick={() => navigate("/terms")}
-              className="hover:text-white transition"
-            >
-              Terms
-            </button>
-          </div>
+        <div style={{ borderTop: "1px solid rgba(255,255,255,0.12)", paddingTop: 24, paddingBottom: 8 }}>
+          <p style={{ fontSize: 12, color: "rgba(255,255,255,0.4)", textAlign: "left" }}>© COPYRIGHT 2026 OGALANDLORD</p>
         </div>
-      </div>
-
-      {/* Watermark */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 text-[80px] md:text-[140px] font-bold text-white/5 whitespace-nowrap pointer-events-none select-none">
-        Ogalandlord
+        <div className="home-footer-watermark" style={{ fontSize: "160px", fontWeight: 700, textAlign: "center", color: "rgba(255,255,255,0.07)", letterSpacing: "-3px", userSelect: "none", lineHeight: 1, marginTop: 8, paddingTop: "26px", overflow: "hidden" }}>
+          Ogalandlord
+        </div>
       </div>
     </footer>
   );
@@ -289,10 +257,10 @@ const FAQS = [
 function FAQSection() {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section className="wl-faq-section px-4 py-20" style={{ background: "#f2fdf5", padding: "" }}>
-      <div className="wl-faq-inner grid grid-cols-1 md:grid-cols-2 gap-3">
-        <div className="wl-faq-left mb-5" style={{ flex: "0 0 280px" }}>
-          <h2 className="text-green-700" style={{ fontSize: 28, fontWeight: 900, marginBottom: 12 }}>Frequently Asked Questions</h2>
+    <section className="home-faq-section" style={{ background: "#f2fdf5", padding: "80px 40px" }}>
+      <div className="home-faq-inner" style={{ maxWidth: 1100, margin: "0 auto", display: "flex", gap: 80, flexWrap: "wrap" }}>
+        <div className="home-faq-left" style={{ flex: "0 0 280px" }}>
+          <h2 className="home-faq-h2" style={{ fontSize: 28, fontWeight: 900, color: "#111827", marginBottom: 12 }}>Frequently Asked Questions</h2>
           <p style={{ fontSize: 14, color: "#6b7280", lineHeight: 1.65 }}>If there are question you want to ask. We will answer all your question.</p>
         </div>
         <div style={{ flex: 1, minWidth: 0 }}>
@@ -320,15 +288,15 @@ export default function Home() {
   return (
     <div style={{ fontFamily: "'Segoe UI','Helvetica Neue',Arial,sans-serif", color: "#111827" }}>
       <style>{mobileStyles}</style>
-      <Navbar  />
+      <Navbar navigate={navigate} />
 
       {/* HERO */}
-      <section className="home-hero-section p-4" style={{ background: "#f0faf4",  textAlign: "center" }}>
-        <div>
+      <section className="home-hero-section" style={{ background: "#f0faf4", padding: "64px 40px 0", textAlign: "center" }}>
+        <div style={{ maxWidth: 720, margin: "0 auto" }}>
           <h1 className="home-hero-h1" style={{ fontSize: "clamp(28px,4vw,48px)", fontWeight: 900, color: "#014421", lineHeight: 1.2, marginBottom: 16 }}>
             Find Verified Rental Agents.<br />Avoid House Scams.
           </h1>
-          <p className="home-hero-p" style={{ fontSize: 16, color: "#6b7280", marginBottom: 32 }}>
+          <p className="home-hero-p" style={{ fontSize: 15, color: "#6b7280", marginBottom: 32 }}>
             Connecting tenants with trusted agents in Ibadan, Abuja, Lagos and Port Harcourt.
           </p>
           <div className="home-hero-ctas" style={{ display: "flex", gap: 12, justifyContent: "center", marginBottom: 48 }}>
@@ -344,7 +312,7 @@ export default function Home() {
         </div>
 
         {/* Hero grid */}
-        <div className="home-hero-grid" style={{ margin: "0 auto", display: "grid", gridTemplateColumns: "42fr 33fr 25fr", gridTemplateRows: "auto auto", gap: 12 }}>
+        <div className="home-hero-grid" style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "42fr 33fr 25fr", gridTemplateRows: "auto auto", gap: 12 }}>
           <div className="home-panel1" style={{ gridColumn: "1 / 2", gridRow: "1 / 3", borderRadius: 16, overflow: "hidden", minHeight: 440, position: "relative", background: "#b6dfc4" }}>
             <img src="/assets/hero-house.png" alt="Nigerian house exterior" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} onError={(e) => { e.currentTarget.style.display = "none"; }} />
           </div>
@@ -361,10 +329,10 @@ export default function Home() {
       </section>
 
       {/* WHY OGALANDLORD */}
-      <section className="home-why-section p-4 pt-20" style={{ background: "#f2fdf5" }}>
-        <div >
-          <h2 className="home-why-h2 text-green-700" style={{ fontSize: 30, fontWeight: 900,  marginBottom: 8 }}>Why Oga<span style={{ fontWeight: 400 }}>Landlord</span></h2>
-          <p style={{ fontSize: 16, color: "#6b7280", marginBottom: 48, maxWidth: 360 }}>We remove the guesswork from house hunting by verifying agents and protecting tenants at every step.</p>
+      <section className="home-why-section" style={{ padding: "80px 40px", background: "#f2fdf5" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <h2 className="home-why-h2" style={{ fontSize: 26, fontWeight: 900, color: "#014421", marginBottom: 8 }}>Why Oga<span style={{ fontWeight: 400 }}>Landlord</span></h2>
+          <p style={{ fontSize: 14, color: "#6b7280", marginBottom: 48, maxWidth: 360 }}>We remove the guesswork from house hunting by verifying agents and protecting tenants at every step.</p>
           <div className="home-why-cards" style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
             {[
               { icon: "/assets/icons/icon2.png", title: "Verified Agents", desc: "Every agent is checked for identity, location, and rental history before approval." },
@@ -374,8 +342,8 @@ export default function Home() {
               <div className="home-why-card" key={i} style={{ flex: "1 1 280px", background: "#ffffff", borderRadius: 16, padding: "28px 28px", border: "1px solid #e5e7eb", display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: 240 }}>
                 <img src={item.icon} alt={item.title} style={{ width: 48, height: 48, marginBottom: 20 }} />
                 <div>
-                  <h4 className="text-green-700" style={{ fontSize: 20, fontWeight: 700,  marginBottom: 8 }}>{item.title}</h4>
-                  <p style={{ fontSize: 16, color: "#6b7280", lineHeight: 1.65 }}>{item.desc}</p>
+                  <h4 style={{ fontSize: 20, fontWeight: 700, color: "#111827", marginBottom: 8 }}>{item.title}</h4>
+                  <p style={{ fontSize: 13, color: "#6b7280", lineHeight: 1.65 }}>{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -384,113 +352,27 @@ export default function Home() {
       </section>
 
       {/* HOW IT WORKS */}
-      <section className=" p-4 pt-20" style={{ background: "#f0faf4" }}>
-        <div className="">
-          <h2 className="text-green-700 mb-4 text-[28px] font-bold ">
-            How It Works
-          </h2>
-          <p
-            style={{
-              fontSize: 14,
-              color: "#6b7280",
-              marginBottom: 48,
-              maxWidth: 365,
-            }}
-          >
-            Follow a clear step-by-step process from agent selection to
-            inspection.
-          </p>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 ">
-            <div className="overflow-hidden rounded-lg overflow-hidden relative ">
-              <img
-                src="/assets/how-it-works.png"
-                alt="How OgaLandlord works"
-                style={{ width: "130%", height: "100%", objectFit: "cover" }}
-                onError={(e) => {
-                  e.currentTarget.style.display = "none";
-                }}
-              />
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  background: "rgba(176, 176, 176, 0.45)",
-                  backdropFilter: "blur(2px)",
-                  padding: "20px 24px",
-                  margin: 16,
-                  borderRadius: 12,
-                }}
-              >
-                <p
-                  style={{
-                    color: "#fff",
-                    fontSize: 14,
-                    lineHeight: 1.6,
-                    margin: 0,
-                  }}
-                >
-                  Tour properties with verified agents and avoid the risks that
-                  come with unverified listings.
-                </p>
+      <section className="home-howitworks-section" style={{ padding: "80px 70px", background: "#f0faf4" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <h2 style={{ fontSize: 26, fontWeight: 900, color: "#111827", marginBottom: 8 }}>How It Works</h2>
+          <p style={{ fontSize: 14, color: "#6b7280", marginBottom: 48, maxWidth: 365 }}>Follow a clear step-by-step process from agent selection to inspection.</p>
+          <div className="home-howitworks-inner" style={{ display: "flex", gap: 64, flexWrap: "wrap", alignItems: "flex-start" }}>
+            <div className="home-howitworks-img" style={{ height: 460, width: 560, borderRadius: 20, overflow: "hidden", position: "relative", background: "#a7f3d0" }}>
+              <img src="/assets/how-it-works.png" alt="How OgaLandlord works" style={{ width: "130%", height: "100%", objectFit: "cover" }} onError={(e) => { e.currentTarget.style.display = "none"; }} />
+              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "rgba(176, 176, 176, 0.45)", backdropFilter: "blur(2px)", padding: "20px 24px", margin: 16, borderRadius: 12 }}>
+                <p style={{ color: "#fff", fontSize: 14, lineHeight: 1.6, margin: 0 }}>Tour properties with verified agents and avoid the risks that come with unverified listings.</p>
               </div>
             </div>
             <div style={{ flex: 1, minWidth: 280 }}>
               {[
-                {
-                  num: "01",
-                  title: "Agent Verification",
-                  desc: "Agents earn trust scores based on verification status and tenant feedback.",
-                },
-                {
-                  num: "02",
-                  title: "Listings Upload",
-                  desc: "Verified agents upload and manage their rental listings on the platform.",
-                },
-                {
-                  num: "03",
-                  title: "Safe Contact",
-                  desc: "Tenants connect with verified agents and inspect properties before any payment.",
-                },
+                { num: "01", title: "Agent Verification", desc: "Agents earn trust scores based on verification status and tenant feedback." },
+                { num: "02", title: "Listings Upload", desc: "Verified agents upload and manage their rental listings on the platform." },
+                { num: "03", title: "Safe Contact", desc: "Tenants connect with verified agents and inspect properties before any payment." },
               ].map((step) => (
-                <div
-                  key={step.num}
-                  style={{
-                    paddingBottom: 32,
-                    marginBottom: 32,
-                    borderBottom: "1px solid #d1fae5",
-                  }}
-                >
-                  <p
-                    style={{
-                      fontSize: 13,
-                      fontWeight: 500,
-                      color: "#6b7280",
-                      margin: "0 0 10px 0",
-                    }}
-                  >
-                    {step.num}
-                  </p>
-                  <h3
-                    className="mt-10 text-green-700"
-                    style={{
-                      fontSize: 20,
-                      fontWeight: 500,
-                    }}
-                  >
-                    {step.title}
-                  </h3>
-                  <p
-                    className="mt-5"
-                    style={{
-                      fontSize: 16,
-                      color: "#6b7280",
-                      lineHeight: 1.65,
-                    }}
-                  >
-                    {step.desc}
-                  </p>
+                <div key={step.num} style={{ paddingBottom: 32, marginBottom: 32, borderBottom: "1px solid #d1fae5" }}>
+                  <p style={{ fontSize: 13, fontWeight: 500, color: "#6b7280", margin: "0 0 10px 0" }}>{step.num}</p>
+                  <h3 style={{ fontSize: 17, fontWeight: 700, color: "#014421", margin: "0 0 8px 0" }}>{step.title}</h3>
+                  <p style={{ fontSize: 13, color: "#6b7280", lineHeight: 1.65, margin: 0 }}>{step.desc}</p>
                 </div>
               ))}
             </div>
@@ -499,197 +381,49 @@ export default function Home() {
       </section>
 
       {/* HAVE A PROPERTY */}
-      <section className=" bg-[#f2fdf5] px-4 pt-20">
-        <div className="  bg-[#fff] rounded-lg p-4 grid lg:grid-cols-2 gap-5  grid-cols-1 items-center ">
-          <div className="  flex flex-col ">
-            <h2
-              className="text-green-700"
-              style={{
-                fontSize: 28,
-                fontWeight: 700,
-                marginBottom: 12,
-                lineHeight: 1.25,
-              }}
-            >
-              Have a Property to Rent?
-              <br />
-              Let Verified Agents Handle It.
-            </h2>
-            <p
-              style={{
-                fontSize: 15,
-                color: "#6b7280",
-                marginBottom: 20,
-                lineHeight: 1.7,
-                width: "90%",
-              }}
-            >
-              Connect with verified rental agents who can manage inspections,
-              tenant sourcing, and negotiations—without the stress or
-              uncertainty.
-            </p>
+      <section className="home-property-section" style={{ padding: "70px 50px", background: "#f2fdf5" }}>
+        <div className="home-property-inner" style={{ padding: "90px 50px", maxWidth: 1200, margin: "0 auto", display: "flex", gap: 48, alignItems: "center", flexWrap: "wrap", background: "#ffffff", position: "relative" }}>
+          <div className="home-property-text" style={{ flex: 1, minWidth: 280 }}>
+            <h2 className="home-property-h2" style={{ fontSize: 28, fontWeight: 700, color: "#014421", marginBottom: 12, lineHeight: 1.25 }}>Have a Property to Rent?<br />Let Verified Agents Handle It.</h2>
+            <p style={{ fontSize: 15, color: "#6b7280", marginBottom: 20, lineHeight: 1.7, width: "90%" }}>Connect with verified rental agents who can manage inspections, tenant sourcing, and negotiations—without the stress or uncertainty.</p>
             <ul style={{ paddingLeft: 0, listStyle: "none", marginBottom: 28 }}>
-              {[
-                "Verified and accountable agents",
-                "Transparent rental process",
-                "Reduced risk of disputes and scams",
-              ].map((item) => (
-                <li
-                  key={item}
-                  style={{
-                    fontSize: 13,
-                    color: "#374151",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 8,
-                  }}
-                >
-                  <span style={{ color: "#014421", fontSize: 16 }}>•</span>{" "}
-                  {item}
+              {["Verified and accountable agents", "Transparent rental process", "Reduced risk of disputes and scams"].map((item) => (
+                <li key={item} style={{ fontSize: 13, color: "#374151", marginBottom: 8, display: "flex", alignItems: "center", gap: 8 }}>
+                  <span style={{ color: "#014421", fontSize: 16 }}>•</span> {item}
                 </li>
               ))}
             </ul>
-            <button
-              className="flex items-center gap-3 bg-green-900 px-10 py-2 rounded-lg text-white w-fit text-md justify-center"
-              onClick={() => navigate("/agent")}
-            >
-              Register as an Agent
-              <ArrowRight size={16} />
+            <button onClick={() => navigate("/AgentList")} style={{ padding: "12px 43px", background: "#014421", color: "#fff", border: "none", borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: "inherit", width: "100%", maxWidth: 240 }}>
+              Find a Verified Agent
             </button>
           </div>
-          <div className="wl-property-img  rounded-lg relative bg-[#a7f3d0] overflow-hidden ">
-            <img
-              src="/assets/verifiedagents.png"
-              alt="Property"
-              className=" w-full object-cover"
-              onError={(e) => {
-                e.currentTarget.style.display = "none";
-              }}
-            />
+          <div className="home-property-img" style={{ flex: "0 0 600px", height: 370, width: 700, borderRadius: 20, overflow: "hidden", position: "relative", background: "#a7f3d0" }}>
+            <img src="/assets/verifiedagents.png" alt="Property" style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} onError={(e) => { e.currentTarget.style.display = "none"; }} />
           </div>
         </div>
       </section>
 
       {/* ARE YOU AN AGENT */}
-      <section className="bg-[#f2fdf5] px-4 pt-20 text-green-700">
-        <div>
-          <h2
-            style={{
-              fontSize: 33,
-              fontWeight: 630,
-              marginBottom: 8,
-              textAlign: "center",
-            }}
-          >
-            Are You a Real Estate Agent?
-          </h2>
-          <div
-            className="wl-agent-cards overflow-hidden grid grid-cols-1  md:grid-cols-3"
-            style={{
-              gap: 20,
-              marginTop: 50,
-            }}>
-            <div
-              className="wl-agent-card  overflow-hidden bg-white mb-2 rounded-lg border border-gray-300">
-              <img
-                src="/assets/agent1.png"
-                alt="Agent"
-                className="w-full object-cover"
-                onError={(e) => {
-                  e.currentTarget.style.display = "none";
-                }}
-              />
-              <p
-                className="px-2 pb-3 mt-3"
-                style={{
-                  fontSize: 16,
-                  color: "#6b7280",
-                }}
-              >
-                Join thousands of verified agents building trust with clients
-                Create your professional profile and showcase your expertise
-                today.
-              </p>
+      <section className="home-agent-section" style={{ padding: "80px 40px", background: "#f2fdf5" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <h2 style={{ fontSize: 33, fontWeight: 630, color: "#014421", marginBottom: 8, textAlign: "center" }}>Are You a Real Estate Agent?</h2>
+          <div className="home-agent-cards" style={{ display: "flex", gap: 24, flexWrap: "wrap", marginTop: 50 }}>
+            <div className="home-agent-card1" style={{ flex: "0 0 430px", borderRadius: 16, height: 310, width: 800, overflow: "hidden", position: "relative", background: "#fff" }}>
+              <img src="/assets/agent1.png" alt="Agent" style={{ width: "120%", height: "110%", objectFit: "contain", display: "block", marginTop: "-80px", marginBottom: "-16px" }} onError={(e) => { e.currentTarget.style.display = "none"; }} />
+              <p style={{ fontSize: 13, color: "#6b7280", lineHeight: 1.40, marginLeft: "5px" }}>Join thousands of verified agents building trust with clients. Create your professional profile and showase your expertise today.</p>
             </div>
-            <div
-              className="flex  justify-between flex-col "
-              style={{
-                flex: 1,
-                minWidth: 200,
-                background: "#fff",
-                borderRadius: 16,
-                padding: "28px 20px",
-                border: "1px solid #e5e7eb",
-              }}
-            >
-              <h3
-                className="text-green-700"
-                style={{
-                  fontSize: 30,
-                  fontWeight: 500,
-                  marginBottom: 40,
-                }}
-              >
-                Increase Your <br /> Visibility
-              </h3>
-              <p className="text-gray-500 text-[16px]">
-                Show up where serious buyers and sellers are actively searching
-                for trusted agents.
-              </p>
+            <div className="home-agent-card2" style={{ flex: 1, minWidth: 200, background: "#fff", borderRadius: 16, padding: "28px 20px", height: 310, border: "1px solid #e5e7eb" }}>
+              <h3 style={{ fontSize: 22, fontWeight: 700, color: "#014421", marginBottom: 40, width: "200px" }}>Increase Your Visibility</h3>
+              <p style={{ fontSize: 13, color: "#6b7280", lineHeight: 1.65, marginTop: 150 }}>Show up where serious buyers and sellers are actively searching for trusted agents.</p>
             </div>
-            <div
-              className="flex  justify-between flex-col"
-              style={{
-                flex: 1,
-                minWidth: 200,
-                background: "#014421",
-                borderRadius: 16,
-                padding: "28px 24px",
-              }}
-            >
-              <h3
-                style={{
-                  fontSize: 30,
-                  fontWeight: 500,
-                  color: "#fff",
-                  marginBottom: 40,
-                }}
-              >
-                Build Instant Trust
-              </h3>
-              <p
-                style={{
-                  fontSize: 16,
-                  color: "rgb(255, 255, 255)",
-                  lineHeight: 1.65,
-                }}
-              >
-                Stand out with a verified, credible profile that reassures
-                clients before the first conversation.
-              </p>
+            <div className="home-agent-card3" style={{ flex: 1, minWidth: 200, background: "#014421", borderRadius: 16, padding: "28px 24px", height: 310 }}>
+              <h3 style={{ fontSize: 22, fontWeight: 700, color: "#fff", marginBottom: 40, width: "180px" }}>Build Instant Trust</h3>
+              <p style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", lineHeight: 1.65, marginTop: 150 }}>Stand out with a verified, credible profile that reassures clients before the first conversation.</p>
             </div>
           </div>
-          <div
-            className="wl-agent-btn-row"
-            style={{ textAlign: "center", marginTop: 36 }}
-          >
-            <button
-              className="wl-agent-btn flex items-center justify-center m-auto px-10 py-2"
-              onClick={() => navigate("/agent")}
-              style={{
-                background: "#014421",
-                color: "#fff",
-                border: "none",
-                borderRadius: 8,
-                fontSize: 14,
-                fontWeight: 500,
-                cursor: "pointer",
-                fontFamily: "inherit",
-                boxShadow: "0 4px 16px rgba(1,68,33,0.25)",
-                gap: 8,
-              }}
-            >
-             Register as an Agent
+          <div style={{ textAlign: "center", marginTop: 36 }}>
+            <button onClick={() => navigate("/agent")} style={{ padding: "12px 44px", background: "#014421", color: "#fff", border: "none", borderRadius: 8, fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: "inherit", boxShadow: "0 4px 16px rgba(1,68,33,0.25)" }}>
+              Register as an Agent
             </button>
           </div>
         </div>
@@ -697,7 +431,7 @@ export default function Home() {
 
       <TestimonialCarousel />
       <FAQSection />
-      <Footer />
+      <Footer navigate={navigate} />
     </div>
   );
 }

@@ -3,16 +3,15 @@ import SignupForm from "../../../components/agent/SignupForm";
 
 export default function Signup() {
   return (
-    <div className="grid md:grid-cols-2 grid-cols-1 ">
-      {/* LEFT PANEL */}
-      <div  className=" hidden md:block">
+    <div className="h-screen flex overflow-hidden">
+      {/* LEFT PANEL — hidden on mobile */}
+      <div className="hidden md:block w-[45%] flex-shrink-0 overflow-hidden">
         <LeftSection />
       </div>
 
-      {/* RIGHT PANEL */}
-      <div className="flex-1">
+      {/* RIGHT PANEL — full width on mobile */}
+      <div className="flex-1 min-w-0 overflow-hidden flex flex-col">
         <SignupForm />
-        {/* <Onboarding /> */}
       </div>
     </div>
   );

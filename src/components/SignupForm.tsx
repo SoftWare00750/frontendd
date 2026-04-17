@@ -77,25 +77,6 @@ export default function Onboarding() {
               className={`bg-white py-2.5 border border-gray-300 rounded-sm p-2 outline-green-900 transition-colors duration-500`}
             ></Input>
           </div>
-          {/* id type */}
-          <div className=" flex flex-col ">
-            <label htmlFor="email" className="text-[13px] pb-2">
-              IdType <span className="text-red-500">*</span>
-            </label>
-            
-          </div>
-          {/* idNo */}
-          <div className=" flex flex-col ">
-            <label htmlFor="email" className="text-[13px] pb-2">
-              IdNo <span className="text-red-500">*</span>
-            </label>
-            <Input
-            required
-              type="text"
-              placeholder="Enter IdNo here"
-              className={`bg-white py-2.5 border border-gray-300 rounded-sm p-2 outline-green-900 transition-colors duration-500`}
-            ></Input>
-          </div>
           {/* password */}
           <div className=" flex flex-col relative ">
             <label htmlFor="password" className="text-[13px] pb-2">

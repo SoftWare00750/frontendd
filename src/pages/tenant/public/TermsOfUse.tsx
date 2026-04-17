@@ -8,12 +8,10 @@ function Logo() {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
       {/* Placeholder: replace src with /assets/logo.png */}
-      <img src="/assets/logo.png" alt="OgaLandlord"
+      <img src="/assets/logo.svg" alt="OgaLandlord"
         style={{ height: 32, objectFit: "contain" }}
         onError={(e) => { e.currentTarget.style.display = "none"; }}
       />
-      <span style={{ fontWeight: 900, fontSize: 17, color: "#1a4d2e" }}>OGA</span>
-      <span style={{ fontWeight: 400, fontSize: 13, color: "#374151" }}>Landlord</span>
     </div>
   );
 }
@@ -59,12 +57,10 @@ function Footer({ navigate }: { navigate: ReturnType<typeof useNavigate> }) {
         <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 40, marginBottom: 48 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
             {/* Footer logo placeholder */}
-            <img src="/assets/logo.png" alt="OgaLandlord"
+            <img src="/assets/logo.svg" alt="OgaLandlord"
               style={{ height: 28, objectFit: "contain" }}
               onError={(e) => { e.currentTarget.style.display = "none"; }}
             />
-            <span style={{ fontWeight: 900, fontSize: 15, color: "#1a4d2e" }}>OGA</span>
-            <span style={{ fontWeight: 400, fontSize: 13, color: "#374151" }}>Landlord</span>
           </div>
           <div>
             <p style={{ fontSize: 14, color: "#374151", marginBottom: 10, fontWeight: 500 }}>Subscribe to our newsletter</p>
@@ -77,7 +73,7 @@ function Footer({ navigate }: { navigate: ReturnType<typeof useNavigate> }) {
             </div>
           </div>
         </div>
-        <div style={{ display: "flex", gap: 80, flexWrap: "wrap", marginBottom: 40 }}>
+        <div style={{ display: "flex", gap: 370, flexWrap: "wrap", marginBottom: 40 }}>
           <div>
             <p style={{ fontWeight: 700, fontSize: 14, color: "#111827", marginBottom: 14 }}>Pages</p>
             {[{ label: "About", path: "/about" }, { label: "Listings", path: "/listings" }, { label: "Agents", path: "/agents" }].map(({ label, path }) => (
@@ -100,7 +96,7 @@ function Footer({ navigate }: { navigate: ReturnType<typeof useNavigate> }) {
         <div style={{ borderTop: "1px solid #e5e7eb", paddingTop: 24 }}>
           <p style={{ fontSize: 12, color: "#9ca3af" }}>© COPYRIGHT 2026 OGALANDLORD</p>
         </div>
-        <div style={{ marginTop: 12, fontSize: "clamp(36px,7vw,88px)", fontWeight: 900, color: "rgba(26,77,46,0.04)", letterSpacing: "-2px", userSelect: "none", lineHeight: 1 }}>
+        <div style={{ fontSize: "170px", fontWeight: 700, textAlign: "center", color: "rgba(246, 246, 246, 0.92)", letterSpacing: "-3px", userSelect: "none", lineHeight: 1, marginTop: 60, paddingTop: "70px", overflow: "hidden" }}>
           Ogalandlord
         </div>
       </div>
