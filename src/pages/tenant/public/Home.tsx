@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import TestimonialCarousel from "./../../../components/shared/TestimonialCarousel.tsx";
+import TenantNavbar from "../../../components/tenant/TenantNavbar";
 
 const mobileStyles = `
   @media (max-width: 768px) {
@@ -153,52 +154,6 @@ const mobileStyles = `
   }
 `;
 
-function Logo() {
-  return (
-    <div style={{ display: "flex", alignItems: "center", gap: 6, cursor: "pointer" }}>
-      <img src="/assets/logo.svg" alt="OgaLandlord" style={{ height: 32, objectFit: "contain" }}
-        onError={(e) => { e.currentTarget.style.display = "none"; (e.currentTarget.nextSibling as HTMLElement).style.display = "flex"; }} />
-      <div style={{ display: "none", alignItems: "center", gap: 4, width: 32, height: 32, borderRadius: 8, background: "#014421", justifyContent: "center" }}>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-          <circle cx="9" cy="9" r="6" stroke="white" strokeWidth="2" />
-          <path d="M13 13l5 5" stroke="white" strokeWidth="2" strokeLinecap="round" />
-        </svg>
-      </div>
-    </div>
-  );
-}
-
-function Navbar({ navigate }: { navigate: ReturnType<typeof useNavigate> }) {
-  const [menuOpen, setMenuOpen] = useState(false);
-  return (
-    <>
-      <nav className="home-navbar" style={{ position: "sticky", top: 0, zIndex: 100, background: "#f2fdf5", borderBottom: "1px solid #e5e7eb", padding: "0 40px", height: 60, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <div onClick={() => navigate("/Home")}> <Logo /></div>
-        <div className="home-navbar-links" style={{ display: "flex", alignItems: "center", gap: 32 }}>
-          {[{ label: "About Us", path: "/AboutUs" }, { label: "Listings", path: "/Listings1" }, { label: "Contact", path: "/Contact" }].map(({ label, path }) => (
-            <button key={label} onClick={() => navigate(path)} style={{ background: "none", border: "none", cursor: "pointer", fontSize: 14, fontWeight: 500, color: "#374151", fontFamily: "inherit", padding: 0 }}>{label}</button>
-          ))}
-          <button onClick={() => navigate("/Onboarding")} style={{ background: "#014421", color: "#fff", border: "none", borderRadius: 8, padding: "10px 20px", fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>Get Started</button>
-        </div>
-        <button className="home-navbar-menu-btn" onClick={() => setMenuOpen(!menuOpen)}
-          style={{ display: "none", background: "none", border: "none", cursor: "pointer", padding: 4, flexDirection: "column", gap: 5 }}>
-          <span style={{ width: 22, height: 2, background: "#374151", borderRadius: 2, display: "block", transition: "all 0.2s", transform: menuOpen ? "rotate(45deg) translate(5px,5px)" : "none" }} />
-          <span style={{ width: 22, height: 2, background: "#374151", borderRadius: 2, display: "block", opacity: menuOpen ? 0 : 1 }} />
-          <span style={{ width: 22, height: 2, background: "#374151", borderRadius: 2, display: "block", transition: "all 0.2s", transform: menuOpen ? "rotate(-45deg) translate(5px,-5px)" : "none" }} />
-        </button>
-      </nav>
-      {menuOpen && (
-        <div style={{ position: "fixed", top: 52, left: 0, right: 0, background: "#f2fdf5", zIndex: 99, borderBottom: "1px solid #e5e7eb", padding: "16px", display: "flex", flexDirection: "column", gap: 4 }}>
-          {[{ label: "About Us", path: "/AboutUs" }, { label: "Listings", path: "/Listings1" }, { label: "Contact", path: "/Contact" }].map(({ label, path }) => (
-            <button key={label} onClick={() => { navigate(path); setMenuOpen(false); }} style={{ background: "none", border: "none", cursor: "pointer", fontSize: 15, fontWeight: 500, color: "#374151", fontFamily: "inherit", padding: "10px 0", textAlign: "left" }}>{label}</button>
-          ))}
-          <button onClick={() => { navigate("/Onboarding"); setMenuOpen(false); }} style={{ background: "#014421", color: "#fff", border: "none", borderRadius: 8, padding: "12px 20px", fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: "inherit", marginTop: 8 }}>Get Started</button>
-        </div>
-      )}
-    </>
-  );
-}
-
 function Footer({ navigate }: { navigate: ReturnType<typeof useNavigate> }) {
   const [email, setEmail] = useState("");
   return (
@@ -288,7 +243,8 @@ export default function Home() {
   return (
     <div style={{ fontFamily: "'Segoe UI','Helvetica Neue',Arial,sans-serif", color: "#111827" }}>
       <style>{mobileStyles}</style>
-      <Navbar navigate={navigate} />
+
+      <TenantNavbar activePath="/Home" background="#f2fdf5" />
 
       {/* HERO */}
       <section className="home-hero-section" style={{ background: "#f0faf4", padding: "64px 40px 0", textAlign: "center" }}>
